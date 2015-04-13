@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+
+<style>
+    * {
+        margin-left: 15px;
+    }
+</style>
+
+<head>
+    <meta content="text/html; charset=UTF-8">
+    <title>CS 315 Team 5 ChocAn Project: Normal USe Cases</title>
+</head>
+
+<h2>Normal Use Cases</h2>
+<body>
+
+Use Case: Add/Delete/Update Members or Providers
+Context: The ChocAn Data Center runs in interactive mode during the day for opperators to add/delete/update mebers or providers.
+Actors: ChocAn Data Center operators
+Main Success Scenario:
+1. A ChocAn operator selects to add, delete, or update a member/provider.
+2. The operator enters in the member/provider to be added, deleted, or updated.
+3. The operator adds, deletes, or updates the member/provider.
+
+Extensions:
+2a. The member/provider entered by the operator to be deleted or updated is not in the system.
+2a.1. The software alerts the operator of the error.
+2a.2. The use case continues at step 1.
+2b. The member/provider entered by the operator to be added is already in the system.
+2b.1. The software alerts the operator.
+2b.2. The software takes the operator to the member's/provider's profile.
+2b.3. The use case continues at step 3.
+
+</body>

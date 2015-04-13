@@ -1,0 +1,271 @@
+
+<style>
+    .header{
+        padding-bottom: 10px;
+        padding-left: 10px;
+        background-color: crimson;
+        text-shadow: 2px 2px black;
+        color: white;
+        box-shadow: 2px 2px black;
+    }
+
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h2{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        background-color: crimson;
+        text-shadow: 2px 2px black;
+        color: white;
+    }
+
+    h3{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+        background-color: crimson;
+        text-shadow: 2px 2px black;
+        color: white;
+    }
+
+    body{
+        background-color: lightgray;
+    }
+
+    .divBox {
+        background-color: white;
+        box-shadow: 2px 2px black;
+    }
+
+
+    .divText{
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    ul{
+        list-style: none;
+    }
+
+    .divText2{
+        background-color: lightgray;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+
+</style>
+<title>CS 315 Team 5 ChocAn Project: Requirements</title>
+
+<head>
+    <div class="header">
+    <h1>
+        CS 315 - Project 1 (Requirements) - Group 5
+    </h1>
+    Matthew Leeds - <b>CWID: 11444055</b> - <b>Email: mwleeds@crimson.ua.edu</b> - <b>6 hours</b><br>
+    Miranda Hardy - <b>CWID: 11455161</b> - <b>Email: mkhardy@crimson.ua.edu</b> - <b>6 hours</b><br>
+    Breanna Tucker - <b>CWID: 11307251</b> - <b>Email: bdtucker@crimson.ua.edu</b> - <b>6 hours</b><br>
+    Mitchell Anderson - <b>CWID: 11301193</b> - <b>Email: msanderson5@crimson.ua.edu</b> - <b>6 hours</b><br>
+    Ryan Mitchell - <b>CWID: 11557275</b> - <b>Email: rtmitchell2@crimson.ua.edu</b> - <b>6 hours (Submitter)</b><br>
+    </div>
+</head>
+
+
+<div class="divBox">
+    <h2>Task Distribution</h2>
+    <img src="commits.png" width="500px" height="auto";><br>
+    <div class="divText">
+    <div class="divText2">
+    Our group completed most of the project during multiple group meetings.<br>
+        <b>Matthew Leeds</b> - Use case diagrams and report html (20%)<br>
+        <b>Ryan Mitchell</b> - Use case diagrams and report html (20%)<br>
+        <b>Miranda Hardy</b> - Use case descriptions and glossary (20%)<br>
+        <b>Breanna Tucker</b> - Use case descriptions and glossary (20%)<br>
+        <b>Mitchell Anderson</b> - Use case descriptions and glossary (20%)<br>
+    </div></div>
+</div>
+
+<div class="divBox">
+    <h2>
+        Normal Use Cases
+    </h2>
+    <div class = "divText">
+        <img src="UML_Use_Case_Normal.png">
+        <h3>Member Validation</h3>
+        <div class = "divText2">
+
+            <b>Use Case:</b> Membership Validation<br>
+            <b>Context:</b> The provider to validate a customer's membership to ChocAn.<br>
+            <b>Actors:</b> Provider<br>
+            <b>Main Success Scenario:</b><br>
+            1. When a card is read through a card reader on the terminal, the ChocAn Data Center is dialed.<br>
+            2. The ChocAn Data Center computer verifies the member number.
+            <blockquote>   2.1 If valid, the word "Validated" appears on the one line display.</blockquote>
+            3. The provider has an option to bill ChocAn for health services provided.
+            <br><br>
+                <b>Extensions:</b><br>
+            2a. The card number is not valid.
+            <blockquote>2a.1. The word "Invalid" is displayed on the one line display indicating the number is invalid.</blockquote>
+            <blockquote>2a.2. The use case continues at step 1.</blockquote>
+            2b. The member is suspended.
+            <blockquote>2b.1. The word "Suspended" is displayed on the one line display indicating the member owes fees and has been suspended.</blockquote>
+            <blockquote>2b.2. The use case continues at step 1.</blockquote>
+        </div>
+
+        <h3>Bill ChocAn</h3>
+        <div class = "divText2">
+            <b>Use Case:</b> Bill ChocAn<br>
+            <b>Context:</b> The provider intends to bill ChocAn for providing a health service provided.<br>
+            <b>Actors:</b> Provider<br>
+            <b>Main Success Scenario:</b><br>
+            1. The provider selects "Bill ChocAn".<br>
+            2. The provider keys in the date of service provided in MM-DD-YYYY format.<br>
+            3. The provider uses the Provider Directory to look up six-digit service code corresponding to the service provided.<br>
+            4. The provider enters in the six-digit code.<br>
+            5. The software displays the name of the service corresponding to the code entered for verification.<br>
+            6. The provider verifies that the correct code has been entered.<br>
+            7. The provider has the option to add comments about the service provided.<br>
+            8. The software looks up the fee associated with the service provided.<br>
+            9. The provider has a form for entering member name and number, date of service, service code, fee to be paid, and current date and time.<br>
+            <br>
+            <b>Extensions:</b><br>
+            2a. The date is entered in the wrong format.
+            <blockquote>2a.1. The system informs the provider.</blockquote>
+            <blockquote>2a.2. The use case continues at step 2.</blockquote>
+            4a. The provider has entered in a nonexistent code.
+            <blockquote>4a.1. The system prints out an error message.</blockquote>
+            <blockquote>4a.2. The use case continues at step 3.</blockquote>
+            6a. The wrong code has been entered for the service that was provided.
+            <blockquote>6a.1. The provider informs the system that the wrong code has been entered.</blockquote>
+            <blockquote>6a.2. The use case continues at step 3.</blockquote>
+        </div>
+
+        <h3>Provider Directory</h3>
+        <div class = "divText2">
+            <b>Use Case:</b> Provider Directory<br>
+            <b>Context:</b> The provider requests the Provider Directory.<br>
+            <b>Actors:</b> Provider<br>
+            <b>Main Success Scenario:</b><br>
+            
+                1. The provider selects that they want an alphabetically ordered list of the services provided through ChocAn and their corresponding service code.<br>
+                2. The Product Directory list is sent to the provider as an email attachment.<br>
+            
+        </div>
+    </div>
+</div>
+
+<div class="divBox">
+    <h2>
+        Reports Use Cases
+    </h2>
+    <img src="UML_Use_Case_Reports.png"/>
+    <div class = "divText">
+        <h3>Generate Reports</h3>
+        <div class = "divText2">
+            <b>Use Case</b>: Generate Report<br>
+            <b>Context</b>: A ChocAn manager requests a report of services provided that week.<br>
+            <b>Actors</b>: ChocAn Manager, Member, Provider<br>
+            <b>Main Success Scenario</b>:<br>
+
+            
+                1. A ChocAn manager selects that they want a report of services provided that week.<br>
+                2. The manager select if they want a certain member's or provider's report, all the member's or provider's report, or all reports.<br>
+                3. The type of report is generated by the ChocAn Data Center.<br>
+                4. The report is sent to the manager.<br>
+            
+
+            <br>
+            <b>Extensions</b>:<br>
+                3a. At midnight on Friday, the ChocAn Data Center reads the week's file of services provided and generates reports.
+                    The manager receives a summary report, and providers and members receive their respective reports as well.<br>
+                3b. EFT data is generated and saved so it is accessible by 3rd party accounting software.<br>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="divBox">
+    <h2>Member Management Cases</h2>
+    <div class="divText">
+        <img src="UML_Use_Case_Account_Management.png"/>
+        <h3>Member Management</h3>
+        <div class = "divText2">
+            <b>Use Case</b>: Create/Read/Update/Delete Members or Providers<br>
+            <b>Context</b>: The ChocAn Data Center runs in interactive mode during the day for opperators to view or alter members or providers.<br>
+            <b>Actors</b>: ChocAn Data Center operators<br>
+            <b>Main Success Scenario</b>:<br>
+
+            1. A ChocAn operator selects to add, delete, or update a member/provider.<br>
+            2. The operator enters in the member/provider to be added, deleted, or updated.<br>
+            3. The operator adds, deletes, or updates the member/provider.<br>
+
+            <p>
+                <b>Extensions</b>:<br>
+
+                2a. The member/provider entered by the operator to be deleted or updated is not in the system.
+                <blockquote>2a.1. The software alerts the operator of the error.</blockquote>
+                <blockquote>2a.2. The use case continues at step 1.</blockquote>
+                2b. The member/provider entered by the operator to be added is already in the system.
+                <blockquote>2b.1. The software alerts the operator.</blockquote>
+                <blockquote>2b.2. The software takes the operator to the member's/provider's profile.</blockquote>
+                <blockquote>2b.3. The use case continues at step 3.</blockquote>
+
+            </div>
+        </div>
+    </div>
+
+<div class="divBox">
+    <h2>Glossary</h2>
+    <div class="divText">
+        <div class="divText2">
+            
+            <b>Member</b>-
+            The member is the individual belonging to ChocAn who recieves the services provided by the affiliated providers.<br>
+            <br>
+            <b>Member report</b>-
+            The member report is a generated report given weekly of the services recieved from the member sorted in chronological order by
+                date.This report includes the member name, member number, member address, member city, state, zip code, and the service code.<br>
+            <br>
+            <b>Summary Report</b>-
+            The summary report is a weekly report given to the manager for accounts payable. The report lists every provider to be paid that
+                week, the number of consultations each had, and his or her total fee for that week. Finally, the total number of providers who
+                provided services, the total number of consultations, and the overall fee total are printed.<br>
+            <br>
+            <b>Manager</b>-
+            The manager handles and recieves both the summary report and the members report containing the information about the member and
+                services.<br>
+            <br>
+            <b>Member Records</b>-
+            The member records contains the member's Name, service number, and service codes in order of date for which the  member has recieved
+                the service. These are used to keep track of billing information for both the member and the provider.<br>
+            <br>
+            <b>Acme Accounting Services</b>-
+            A third-party organization contracted out for processing payments of membership fees.<br>
+            <br>
+            <b>Operators</b>-
+            ChocAn employees that oversee member and provider records.<br>
+            <br>
+            <b>Provider(s)</b>-
+            Health Care professional who proveds services to ChocAn members.<br>
+            <br>
+            <b>Provider Directory</b>-
+            Is used to look up service codes corresponding to services provided.<br>
+            <br>
+            <b>Provider Records</b>-
+            Records of services provided by providers to customers.<br>
+            <br>
+            <b>Provider Report</b>-
+            A weekly report sent to providers who bill ChocAn that week containing the list of services he or she provided.<br>
+            <br>
+            </p>
+           </div>
+        </div>
+</div>
