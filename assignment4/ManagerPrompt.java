@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class ManagerPrompt extends PromptController {
 
-	public void manager(Scanner input) {
+	public static void manager(Scanner input) {
 		String filename = prompt(input, "Enter report file name?");
 		File ReportFile = new File(filename);
 		if (ReportFile.exists()) {

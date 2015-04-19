@@ -5,7 +5,7 @@ import java.util.Scanner;
  *
  */
 public class PromptController {
-	public String prompt(Scanner input, String promptString) {
+	public static String prompt(Scanner input, String promptString) {
 		System.out.println(promptString);
 		String response = input.next();
 		return response;

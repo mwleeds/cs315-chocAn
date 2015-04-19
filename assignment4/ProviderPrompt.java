@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class ProviderPrompt extends PromptController {
 	
-	public void provider(Scanner input) {
+	public static void provider(Scanner input) {
         String id = prompt(input, "Enter ID: ");
 		if (id.length() != 9) {
 			System.out.println("Invalid ID");
