@@ -14,7 +14,7 @@ public class Main {
     //The databases
     public static final Database<Member> memberDatabase = new Database<Member>(memberDatabaseFile);
     public static final Database<Provider> providerDatabase = new Database<Provider> (providerDatabaseFile);
-    public static final Database<Service> serviceDatabase = new Database<Service>(serviceDatabaseFile);
+    public static final Database<Service> providerDirectoryDatabase = new Database<Service>(serviceDatabaseFile);
     public static final Database<ProvidedService> providedServiceDatabase = new Database<ProvidedService>(providedServiceDatabaseFile);
 
     public static void main(String []args) {
