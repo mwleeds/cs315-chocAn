@@ -1,3 +1,5 @@
+package chocAn;
+
 import java.util.Scanner;
 
 public class OperatorPrompt extends PromptController {

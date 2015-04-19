@@ -1,5 +1,6 @@
+package chocAn;
 
-public class Member extends Database.DatabaseMember{
+public class Member extends Database.DatabaseMember {
 
     private String name;
     private String addressStreet;

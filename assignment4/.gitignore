@@ -1,1 +1,3 @@
-*.class
+doc/
+release/
+bin/
