@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author breannatucker
  *
  */
-public class PromptController {
+public abstract class PromptController {
 	public static String prompt(Scanner input, String promptString) {
 		System.out.println(promptString);
 		String response = input.next();

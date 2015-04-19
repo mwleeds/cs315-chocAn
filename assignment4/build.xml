@@ -23,7 +23,7 @@
 
     <!-- Compiles the java code (including the usage of library for JUnit -->
     <target name="compile" depends="clean, makedir">
-        <javac srcdir="${src.dir}" destdir="${build.dir}">
+        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}">
         </javac>
     </target>
 
