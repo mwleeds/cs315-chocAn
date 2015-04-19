@@ -20,7 +20,7 @@ public class Main {
                 ManagerPrompt.manager(input);
                 break;
             case 4:
-                //MemberPrompt.member(input);
+                MemberPrompt.member(input);
                 break;
             default:
                 System.out.println("Sorry, not a correct number entered :(");

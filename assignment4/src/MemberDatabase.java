@@ -1,7 +1,9 @@
 package chocAn;
 
+import java.security.InvalidParameterException;
+
 /**
- * Created by user on 4/15/2015.
+ * @author RyanMitch16
  */
 public class MemberDatabase{
 
@@ -11,7 +13,7 @@ public class MemberDatabase{
     //Instantiate the member database
     private static final Database mDatabase = new Database(fileName);
 
-    /***
+    /**
      * Adds a member who has not been added yet to the member database
      * @param member    the member instance to add
      * @return          the id of the member
@@ -20,17 +22,21 @@ public class MemberDatabase{
         return mDatabase.addEntry(member);
     }
 
-    /***
+    /**
      * Gets the member with the specified id from the database
      * @param id    the id to request
      * @return      the member with the corresponding id or null if none exists
      */
-    public static Member getMember(int id){
-        return (Member) mDatabase.getEntry(id);
+    public static Member getMember(int id) throws InvalidParameterException {
+        try {
+            return (Member) mDatabase.getEntry(id);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidParameterException();
+        }
     }
 
-    /***
-     *  Updates the member in the database
+    /**
+     * Updates the member in the database
      * @param member
      */
     public static void updateMember(Member member){

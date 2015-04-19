@@ -3,7 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-/***
+/**
  * This is the database class used to save objects to files for use later.
  * All database members must inherit from DatabaseEntry in order to work in the database.
  * Entries can be added, returned, removed, and updated after their values are changed.
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public final class Database<T> {
 
-    /***
+    /**
      * The class all database members must inherit from so they can be given ids
      */
     public static class DatabaseEntry implements Serializable{
@@ -19,7 +19,7 @@ public final class Database<T> {
         //The id of the member in the database that can only be set once
         private int id = -1;
 
-        /***
+        /**
          * Gets the id of the database member
          * @return  the id
          */
@@ -29,7 +29,7 @@ public final class Database<T> {
             throw new Exception("The id cannot be relieved until the object is added to the database");
         }
 
-        /***
+        /**
          * Sets the id of the database member. It can only be set once when it is added to the database.
          * @param obj   the object calling set id
          * @param id    the id of the database object
@@ -49,7 +49,7 @@ public final class Database<T> {
     //An array list that holds the database entries
     private ArrayList<DatabaseEntry> entryList;
 
-    /***
+    /**
      * Creates or loads the database if it already exists
      * @param fileName  the file name of the database
      */
@@ -58,20 +58,19 @@ public final class Database<T> {
         //Load the database if it exists
         this.fileName = fileName;
         File databaseFile = new File(fileName);
-        if (databaseFile.exists()){
-            load();}
-        else{
+        if (databaseFile.exists()) {
+            load();
+        } else {
             //Create a new database file if it does not
-            try{
+            try {
                 databaseFile.createNewFile();
             } catch (Exception e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
-
             entryList = new ArrayList<DatabaseEntry>();}
     }
 
-    /***
+    /**
      * Loads the database from the file
      */
     private void load(){
@@ -88,16 +87,15 @@ public final class Database<T> {
             //Close the files
             byteStream.close();
             objectStream.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.toString());  //Catch out any exceptions
         }
     }
 
-    /***
+    /**
      * Saves the database to the file
      */
-    private void save(){
+    private void save() {
         try {
             //Write the bytes of the object into an output stream
 
@@ -110,8 +108,7 @@ public final class Database<T> {
             byteStream.close();
             objectStream.close();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.toString());  //Catch out any exceptions
         }
     }
@@ -121,9 +118,8 @@ public final class Database<T> {
      * @param entry The object to be entered into the database
      * @return      The id of the object in the database
      */
-    public int addEntry(DatabaseEntry entry){
-        try{
-
+    public int addEntry(DatabaseEntry entry) {
+        try {
             //Add the entry to the entry list
             int id = entryList.size();
 
@@ -132,8 +128,8 @@ public final class Database<T> {
 
             save();  //Save the new database
 
-            return id;}
-        catch (Exception e){
+            return id;
+        } catch (Exception e) {
             System.out.println(e);
             System.out.println("Cannot not add entry because the entry already exists");
         }
@@ -141,50 +137,51 @@ public final class Database<T> {
         return -1;
     }
 
-    /***
+    /**
      * Returns the object stored in the database with the specified id
      * @param id    The id of the object to be returned
      * @return      The object with the specified id or null if no object exists
      */
-    public T getEntry(int id){
+    public T getEntry(int id) throws IndexOutOfBoundsException {
         return (T) entryList.get(id);
     }
 
-    /***
+    /**
      * Returns an array list containing the database members
      * @return  the array list of the entries
      */
-    public ArrayList<T> getEntryList(){
+<<<<<<< HEAD
+    public ArrayList<T> getEntryList() {
         ArrayList<T> outList = new ArrayList<T>();
         for (int i=0;i<entryList.size();i++){
             outList.add((T) entryList.get(i));
         }
         return outList;
     }
-    /***
+    /**
      * Remove the entry from the database
      * @param entry the entry to remove
      */
     public void removeEntry(DatabaseEntry entry){
-        try{
+        try {
             int id = entry.getId();
             entryList.set(id,null);
-            save();}
-        catch (Exception e){
+            save();
+        } catch (Exception e) {
             System.out.println(e);
             System.out.print("The entry has not been added to the database so it cannot be removed");
         }
     }
 
-    /***
+    /**
      * Gets the number of entries in the database
      * @return  the number of entries in the database
      */
-    public int size(){
+    public int size() {
         return entryList.size();
     }
 
-    /***
+    /**
      * Updates the object stores in the database with the specified id
      * @param entry The object to replace the old object
      */
