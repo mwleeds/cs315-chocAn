@@ -16,7 +16,7 @@ public class MemberPrompt extends PromptController {
             System.out.println("Error: Member IDs must be 9 digits long!");
             return;
         }
-        Member thisMember;
+        /*Member thisMember;
         try {
             thisMember = MemberDatabase.getMember(id);
         } catch (Exception e) {
@@ -44,6 +44,6 @@ public class MemberPrompt extends PromptController {
             System.out.println("Error writing to file " + filename);
             System.out.println(e.getMessage());
             return;
-        }
+        }*/
 	}
 }
