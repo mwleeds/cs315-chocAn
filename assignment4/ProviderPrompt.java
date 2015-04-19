@@ -1,33 +1,35 @@
+import java.io.*;
 import java.util.Scanner;
 
-public class ProviderPrompt {
+/**
+ * @author mkhardy17
+ * @author mleeds95
+ */
+public class ProviderPrompt extends PromptController {
 	
-	public static void provider() {
-		System.out.println("Enter ID: ");
-		Scanner reader = new Scanner(System.in);
-		String s = reader.next();
-		System.out.println(s);
-	
-		if (s.length() != 9) {
+	public void provider(Scanner input) {
+        String id = prompt(input, "Enter ID: ");
+		if (id.length() != 9) {
 			System.out.println("Invalid ID");
+            return;
 		}
-		else {
-			System.out.println("Select reason for using ChocAn:");
-			System.out.println("Type 1 for Accessing Provider Directory, type 2 for Bill ChocAn for Service or type 3 for Request Report: ");
-			Scanner choice = new Scanner(System.in);
-			int i = choice.nextInt();
-			if (i == 1) {
-				//ProviderDirectory();
-			}
-			if (i == 2) {
-				//BillChocAN();
-			}
-			if (i == 3) {
-				//ProviderReport();
-			}
-			else {
-				System.out.println("Sorry, not a correct number entered :(");
-			}
-		}
+        String choice = prompt(input, "1. Access Provider Directory\n2. Bill ChocAn for Service\n3. Request Report\nEnter choice: ");
+        switch (choice) {
+            case "1":
+                System.out.println("Member Database");
+                //TODO
+                break;
+            case "2":
+                System.out.println("Provider Database");
+                //TODO
+                break;
+            case "3":
+                System.out.println("Provider Report");
+                //TODO
+                break;
+            default:
+                System.out.println("Sorry, not a correct number entered :(");
+                break;
+        }
 	}
 }
