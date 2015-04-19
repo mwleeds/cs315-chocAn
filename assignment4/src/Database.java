@@ -1,17 +1,20 @@
-package chocAn;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-
-public class Database {
+/***
+ * This is the database class used to save objects to files for use later.
+ * All database members must inherit from DatabaseEntry in order to work in the database.
+ * Entries can be added, returned, removed, and updated after their values are changed.
+ * @author Ryan Mitchell
+ */
+public final class Database<T> {
 
     /***
      * The class all database members must inherit from so they can be given ids
      */
-    public static class DatabaseMember implements Serializable{
+    public static class DatabaseEntry implements Serializable{
 
         //The id of the member in the database that can only be set once
         private int id = -1;
@@ -40,8 +43,11 @@ public class Database {
         }
     }
 
-    private String fileName;  //The name of the database file
-    private ArrayList<DatabaseMember> entryList;  //An array list that holds the database entries
+    //The name of the database file
+    private String fileName;
+
+    //An array list that holds the database entries
+    private ArrayList<DatabaseEntry> entryList;
 
     /***
      * Creates or loads the database if it already exists
@@ -58,13 +64,15 @@ public class Database {
             //Create a new database file if it does not
             try{
                 databaseFile.createNewFile();
-            } catch (Exception e) {}
-            entryList = new ArrayList<DatabaseMember>();}
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+            entryList = new ArrayList<DatabaseEntry>();}
     }
 
     /***
-     * Takes a string representation and deserializes it into an object
-     * @return      The object representation of the string
+     * Loads the database from the file
      */
     private void load(){
         try {
@@ -75,7 +83,7 @@ public class Database {
             //Convert the file contents into the object array
             ByteArrayInputStream byteStream = new ByteArrayInputStream(fileBytes);
             ObjectInputStream objectStream = new ObjectInputStream(byteStream);
-            entryList = (ArrayList<DatabaseMember>) objectStream.readObject();
+            entryList = (ArrayList<DatabaseEntry>) objectStream.readObject();
 
             //Close the files
             byteStream.close();
@@ -87,8 +95,7 @@ public class Database {
     }
 
     /***
-     * Takes an object and serializes it into a string representation
-     * @return      The string representation of the object
+     * Saves the database to the file
      */
     private void save(){
         try {
@@ -110,11 +117,11 @@ public class Database {
     }
 
     /***
-     *  Adds an object into the database and returns its id
+     * Adds an object into the database and returns its id
      * @param entry The object to be entered into the database
      * @return      The id of the object in the database
      */
-    public int addEntry(DatabaseMember entry){
+    public int addEntry(DatabaseEntry entry){
         try{
 
             //Add the entry to the entry list
@@ -139,23 +146,26 @@ public class Database {
      * @param id    The id of the object to be returned
      * @return      The object with the specified id or null if no object exists
      */
-    public DatabaseMember getEntry(int id){
-        return entryList.get(id);
+    public T getEntry(int id){
+        return (T) entryList.get(id);
     }
 
     /***
      * Returns an array list containing the database members
      * @return  the array list of the entries
      */
-    public ArrayList<DatabaseMember> getEntryList(){
-        return (ArrayList<DatabaseMember>) entryList.clone();
+    public ArrayList<T> getEntryList(){
+        ArrayList<T> outList = new ArrayList<T>();
+        for (int i=0;i<entryList.size();i++){
+            outList.add((T) entryList.get(i));
+        }
+        return outList;
     }
-
     /***
-     *
-     * @param entry
+     * Remove the entry from the database
+     * @param entry the entry to remove
      */
-    public void removeEntry(DatabaseMember entry){
+    public void removeEntry(DatabaseEntry entry){
         try{
             int id = entry.getId();
             entryList.set(id,null);
@@ -167,10 +177,18 @@ public class Database {
     }
 
     /***
+     * Gets the number of entries in the database
+     * @return  the number of entries in the database
+     */
+    public int size(){
+        return entryList.size();
+    }
+
+    /***
      * Updates the object stores in the database with the specified id
      * @param entry The object to replace the old object
      */
-    public void updateEntry(DatabaseMember entry){
+    public void updateEntry(DatabaseEntry entry){
         try{
             int id = entry.getId();
             entryList.set(id,entry);
