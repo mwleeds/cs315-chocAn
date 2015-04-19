@@ -3,7 +3,7 @@ package chocAn;
 import java.security.InvalidParameterException;
 
 /**
- * @author RyanMitch16
+ * @author Ryan Mitchell
  */
 public class MemberDatabase{
 

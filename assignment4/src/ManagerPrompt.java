@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 /**
  *Allows manager to write out a report file.
- * @author breannatucker
- * @author mleeds95
+ * @author Breanna Tucker
+ * @author Matthew Leeds
  *
  */
 public class ManagerPrompt extends PromptController {

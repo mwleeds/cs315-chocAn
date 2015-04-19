@@ -1,8 +1,10 @@
+package chocAn;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/***
+/**
  * The Provided Service class that holds information on an individual service that were provided by a provider
  * @author  Ryan Miitchell
  */
@@ -16,7 +18,7 @@ public class ProvidedService {
     private int serviceId;
     private String comment;
 
-    /***
+    /**
      * Creates a Provided Service instance
      * @param dateProvided  the date the service was provided
      * @param memberId      the id of the member who was provided the service

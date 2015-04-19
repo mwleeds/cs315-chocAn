@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * @author mkhardy17
- * @author mleeds95
+ * @author Miranda Hardy
+ * @author Matthew Leeds
  */
 public class ProviderPrompt extends PromptController {
 	

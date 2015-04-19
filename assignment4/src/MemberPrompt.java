@@ -6,7 +6,7 @@ import java.lang.Math;
 
 /**
  *Allows members to write out a report file.
- * @author mleeds95
+ * @author Matthew Leeds
  *
  */
 public class MemberPrompt extends PromptController {

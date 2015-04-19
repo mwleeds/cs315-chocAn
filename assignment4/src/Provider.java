@@ -1,4 +1,6 @@
-/***
+package chocAn;
+
+/**
  * The Provider class that holds information on an individual provider
  * @author  Ryan Miitchell
  */
