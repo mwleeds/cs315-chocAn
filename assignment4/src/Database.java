@@ -1,3 +1,5 @@
+package chocAn;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -150,7 +152,6 @@ public final class Database<T> {
      * Returns an array list containing the database members
      * @return  the array list of the entries
      */
-<<<<<<< HEAD
     public ArrayList<T> getEntryList() {
         ArrayList<T> outList = new ArrayList<T>();
         for (int i=0;i<entryList.size();i++){
