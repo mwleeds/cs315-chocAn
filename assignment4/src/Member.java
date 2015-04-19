@@ -1,4 +1,4 @@
-/***
+/**
  * The Member class that holds information on an individual member
  * @author  Ryan Miitchell
  */

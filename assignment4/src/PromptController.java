@@ -1,5 +1,3 @@
-package chocAn;
-
 import java.util.Scanner;
 /**
  * Parent class for all the prompt controllers.

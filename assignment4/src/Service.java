@@ -1,5 +1,3 @@
-package chocAn;
-
 /**
  * The Service class that holds information on an individual service that a provider can provide
  * @author  Ryan Miitchell

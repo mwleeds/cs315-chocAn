@@ -1,10 +1,8 @@
-package chocAn;
-
 /**
  * The Provider class that holds information on an individual provider
  * @author  Ryan Miitchell
  */
-public class Provider extends Database.DatabaseEntry{
+public class Provider extends Database.DatabaseEntry {
 
     //The provider property variables
     private String name;

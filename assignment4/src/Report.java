@@ -1,5 +1,3 @@
-package chocAn;
-
 import java.io.*;
 
 /**
