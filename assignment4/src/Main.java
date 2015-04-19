@@ -42,7 +42,7 @@ public class Main {
                 break;
         }
 
-        }
+    }
 
         //Example for quereying information
         //Get all services provided to member #0

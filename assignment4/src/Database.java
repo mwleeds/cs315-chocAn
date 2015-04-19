@@ -78,6 +78,9 @@ public final class Database<T> {
             //Read in the contents of the database file
             BufferedInputStream fileOut = new BufferedInputStream(new FileInputStream(fileName));
             byte[] fileBytes =  Files.readAllBytes(Paths.get(fileName));
+            
+            if (fileBytes.length == 0){
+            	return;}
 
             //Convert the file contents into the object array
             ByteArrayInputStream byteStream = new ByteArrayInputStream(fileBytes);
@@ -98,7 +101,6 @@ public final class Database<T> {
     private void save() {
         try {
             //Write the bytes of the object into an output stream
-
             FileOutputStream byteStream = new FileOutputStream(fileName);
             ObjectOutputStream objectStream = new ObjectOutputStream(byteStream);
 
