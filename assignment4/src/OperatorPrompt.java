@@ -2,6 +2,7 @@ import database.*;
 
 public class OperatorPrompt extends Prompter{
 	
+	//The different type of databases
 	public enum EntryType{
 		MEMBER, PROVIDER, SERVICE
 	}
@@ -56,6 +57,7 @@ public class OperatorPrompt extends Prompter{
 		}
 		typeLower = type.toLowerCase();
 		
+		//Choose what operation to perform
 		String choice = " ";
 		while (!choice.equals("")){
 			choice = prompt(String.format("Choose an action\n1. Add a new "+typeLower+"\n2. Get an "+typeLower+"'s information\n"
@@ -77,6 +79,7 @@ public class OperatorPrompt extends Prompter{
 					//Add the member to the database
 					Member newMember = new Member(name,status,street,city,zip,state);
 					id = ChocAnMain.memberDatabase.addEntry(newMember);}
+				
 				else if (entry == EntryType.PROVIDER){
 					//Get the properties for the provider
 					String name = prompt("Name:");
@@ -88,6 +91,7 @@ public class OperatorPrompt extends Prompter{
 					//Add the provider to the database
 					Provider newProvider = new Provider(name,street,city,zip,state);
 					id = ChocAnMain.providerDatabase.addEntry(newProvider);}
+				
 				else if (entry == EntryType.SERVICE){
 					//Get the properties for the service
 					String name = prompt("Name:");

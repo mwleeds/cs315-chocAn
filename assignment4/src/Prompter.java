@@ -32,6 +32,19 @@ public abstract class Prompter {
 		return null;
 	}
 	
+	public static String prompt(String promptString, int length) {
+		String output = "";
+		while (output == ""){
+			output = prompt(promptString);
+			if (output.length() > length){
+				System.out.println("The max number of characters is "+length);
+				output = "";
+			}
+		}
+		return output;
+		
+	}
+	
 	/**
 	 * Goes further down a level into the next path and prints the path
 	 * @param path	the name of the next level
