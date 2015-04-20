@@ -2,17 +2,22 @@
 
 
 import java.util.Scanner;
+
 /**
  * Parent class for all the prompt controllers.
+<<<<<<< HEAD
  * @author Ryan Mitchell
  * @author breannatucker
+=======
+ * @author Breanna Tucker
+>>>>>>> origin/master
  *
  */
 public abstract class Prompter {
 	
 	private String promptPath = "\n";
 	
-	/***
+	/**
 	 * Prompts the user with a message and returns the response from the message
 	 * @param promptString	the string to prompt the user to respond to
 	 * @return				the response from the message
@@ -27,7 +32,7 @@ public abstract class Prompter {
 		return null;
 	}
 	
-	/***
+	/**
 	 * Goes further down a level into the next path and prints the path
 	 * @param path	the name of the next level
 	 */
@@ -36,7 +41,7 @@ public abstract class Prompter {
 		System.out.println(promptPath);
 	}
 	
-	/***
+	/**
 	 * Goes back one level to the previous path
 	 */
 	public void goBack(){
@@ -45,7 +50,7 @@ public abstract class Prompter {
 	}
 	
 	
-	/***
+	/**
 	 * Runs the logic for the prompter
 	 */
 	public abstract void run();

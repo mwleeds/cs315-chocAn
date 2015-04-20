@@ -13,7 +13,7 @@
         <delete dir="${docs.dir}" />
         <delete dir="${dist.dir}" />
         <delete>
-            <fileset dir="." includes="**.dat"/>
+            <fileset dir="." includes="*.dat"/>
         </delete>
     </target>
 
@@ -27,6 +27,7 @@
     <!-- Compiles the java code (including the usage of library for JUnit -->
     <target name="compile" depends="clean, makedir">
         <javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}">
+            <classpath path=".:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:bin"/>
         </javac>
     </target>
 
@@ -44,9 +45,18 @@
     <target name="jar" depends="compile">
         <jar destfile="${dist.dir}\chocAn.jar" basedir="${build.dir}">
             <manifest>
-                <attribute name="Main-Class" value="Main" />
+                <attribute name="Main-Class" value="ChocAnMain" />
             </manifest>
         </jar>
+    </target>
+    
+    <!-- Runs the JUnit test cases --> 
+    <target name="test" depends="compile">
+        <junit printsummary="yes">
+            <classpath path=".:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:bin"/>
+            <formatter type="plain" />
+            <test name="ChocAnTest" skipNonTests="true"/>
+        </junit>
     </target>
 
     <target name="main" depends="compile, jar">

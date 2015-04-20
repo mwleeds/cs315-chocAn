@@ -1,7 +1,7 @@
-
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import database.*;
 
 /**
  * @author Miranda Hardy
@@ -10,22 +10,22 @@ import java.util.ArrayList;
 public class ProviderPrompt extends Prompter {
 	
 	public void run() {
-		/*
-        String id = prompt(input, "Enter ID: ");
+        String id = prompt("Enter ID: ");
 		if (id.length() != 9) {
 			System.out.println("Invalid ID");
             return;
 		}
+        Provider thisProvider;
         try {
-            Main.providerDatabase.getEntry(Integer.parseInt(id));
+            thisProvider = ChocAnMain.providerDatabase.getEntry(Integer.parseInt(id));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Invalid ID");
             return;
         }
-        String choice = prompt(input, "1. Access Provider Directory\n2. Bill ChocAn for Service\n3. Request Report\nEnter choice: ");
+        String choice = prompt("1. Access Provider Directory\n2. Bill ChocAn for Service\n3. Request Report\nEnter choice: ");
         switch (choice) {
             case "1":
-                ArrayList<Service> services = Main.providerDirectoryDatabase.getEntryList();
+                ArrayList<Service> services = ChocAnMain.providerDirectoryDatabase.getEntryList();
                 System.out.println("Provider Directory");
                 for (int i = 0; i < services.size(); ++i) {
                     Service s = services.get(i);
@@ -39,13 +39,28 @@ public class ProviderPrompt extends Prompter {
                 //TODO
                 break;
             case "3":
-                System.out.println("Provider Report");
-                //TODO
+                String filename = prompt("Enter report file name?");
+                File reportFile = new File(filename);
+                if (reportFile.exists()) {
+                    String response = prompt("File exists. Overwrite? [Y/n]");
+                    if (response.substring(0,0).toUpperCase().equals("N"))
+                        return;
+                    else 
+                        reportFile.delete();
+                }
+                try {
+                    reportFile.createNewFile();
+                    ProviderReport pReport = new ProviderReport(reportFile, thisProvider);
+                    pReport.generateReport();
+                } catch (IOException e) {
+                    System.out.println("Error writing to file " + filename);
+                    System.out.println(e.getMessage());
+                    return;
+                }
                 break;
             default:
                 System.out.println("Sorry, not a correct number entered :(");
                 break;
         }
-        */
 	}
 }

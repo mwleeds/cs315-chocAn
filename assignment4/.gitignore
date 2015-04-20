@@ -1,3 +1,5 @@
 doc/
 release/
 bin/
+*.class
+*.txt

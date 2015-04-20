@@ -1,3 +1,5 @@
+package database;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,7 +8,7 @@ import java.util.Date;
  * The Provided Service class that holds information on an individual service that were provided by a provider
  * @author  Ryan Miitchell
  */
-public class ProvidedService {
+public class ProvidedService  extends Database.DatabaseEntry {
 
     //The provided service property variables
     private String dateProvided;
@@ -27,7 +29,7 @@ public class ProvidedService {
     public ProvidedService(Date dateProvided, int memberId, int providerId, int serviceId, String comment){
 
         //Formats the dates into strings for storage
-        DateFormat dateFormat = new SimpleDateFormat("MM-DD-YYYY HH:MM:SS");
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
         this.dateProvided = dateFormat.format(dateProvided);
         this.dateInput = dateFormat.format(new Date());
 

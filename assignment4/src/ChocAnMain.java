@@ -28,8 +28,9 @@ public class ChocAnMain {
         providerDirectoryDatabase.addEntry(s1);
         Provider p1 = new Provider("Obamacare", "addr1", "city", "zip", "state");
         providerDatabase.addEntry(p1);
-        try {System.out.println(p1.getId());} catch (Exception e) {}
-
+        Member m1 = new Member("Jacob Farmer", "Suspended", "123 Maple Street", "Farmington", "12345", "WI");
+        memberDatabase.addEntry(m1);
+        try {System.out.println("member id " + m1.getId());} catch (Exception e) {}
         System.out.println("Welcome to ChocAn!");
         
         //Choose which user to log in as
