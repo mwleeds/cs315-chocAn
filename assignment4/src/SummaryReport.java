@@ -3,20 +3,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
+import java.util.Iterator;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import database.*;
 
 /**
- * The SummaryReport class generates report files for managers with totals for each 
- * providers (# of services and fees), and overall totals for the week.
+ * The SummaryReport class generates report files for managers with totals for the week.
+ * It can also generate Electronic Funds Transfer data files.
  * @author Matthew Leeds
  */
 public class SummaryReport extends Report {
-    public SummaryReport(File f) {
-        this.file = f;
+
+    private Map<Integer, Double> totalFees;
+    private Map<Integer, Integer> numConsultations;
+
+    public SummaryReport(File summaryFile) {
+        this.file = summaryFile;
     }
+
+    /**
+     * For each provider who has provided services in the past week, this prints their 
+     * total number of consultations and amount to be paid.
+     */
     public void generateReport() throws IOException {
         FileWriter fW = new FileWriter(this.file);
         // Find all providers who provided services in the past week.
@@ -24,9 +34,9 @@ public class SummaryReport extends Report {
         // List of providers who provided services in the past week.
         ArrayList<Provider> relevantProviders = new ArrayList<Provider>();
         // This maps Provider IDs to their total number of consultations.
-        Map<Integer, Integer> numConsultations = new HashMap<Integer, Integer>();
+        this.numConsultations = new HashMap<Integer, Integer>();
         // This maps Provider IDs to Fee totals.
-        Map<Integer, Double> totalFees = new HashMap<Integer, Double>();
+        this.totalFees = new HashMap<Integer, Double>();
         DateFormat dateFormat = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
         Date now = new Date();
         Date aWeekAgo = new Date(now.getTime() - 7 * 24 * 3600 * 1000);
@@ -42,15 +52,15 @@ public class SummaryReport extends Report {
             if (timeInput.after(aWeekAgo)) {
                 int serviceId = p.getServiceId();
                 Service s = ChocAnMain.providerDirectoryDatabase.getEntry(serviceId);
-                if (!numConsultations.containsKey(providerId)) {
-                    numConsultations.put(providerId, 1);
-                    totalFees.put(providerId, s.getFee());
+                if (!this.numConsultations.containsKey(providerId)) {
+                    this.numConsultations.put(providerId, 1);
+                    this.totalFees.put(providerId, s.getFee());
                     relevantProviders.add(ChocAnMain.providerDatabase.getEntry(providerId));
                 } else {
-                    int prevNumConsultations = numConsultations.get(providerId);
-                    numConsultations.put(providerId, ++prevNumConsultations);
-                    double prevFeeTotal = totalFees.get(providerId);
-                    totalFees.put(providerId, prevFeeTotal + s.getFee());
+                    int prevNumConsultations = this.numConsultations.get(providerId);
+                    this.numConsultations.put(providerId, ++prevNumConsultations);
+                    double prevFeeTotal = this.totalFees.get(providerId);
+                    this.totalFees.put(providerId, prevFeeTotal + s.getFee());
                 }
                 overallFeeTotal += s.getFee();
             }
@@ -61,11 +71,26 @@ public class SummaryReport extends Report {
             try { thisProviderId = thisProvider.getId(); }
             catch (Exception e) { thisProviderId = -1; }
             fW.write(thisProviderId + "\n");
-            fW.write(numConsultations.get(thisProviderId) + "\n");
-            fW.write(totalFees.get(thisProviderId) + "\n");
+            fW.write(this.numConsultations.get(thisProviderId) + "\n");
+            fW.write(this.totalFees.get(thisProviderId) + "\n");
         }
         fW.write(relevantProviders.size() + "\n");
         fW.write(overallFeeTotal + "\n");
+        fW.close();
+    }
+    
+    /**
+     * This writes to the disk the fee totals for each provider with services provided in the past week,
+     * which will be read by Acme Accounting Services.
+     */ 
+    public void generateEFTReport(File file) throws IOException {
+        FileWriter fW = new FileWriter(this.file);
+        Iterator<Integer> itr = this.totalFees.keySet().iterator();
+        while (itr.hasNext()) {
+            int providerId = itr.next();
+            double providerFee = this.totalFees.get(providerId);
+            fW.write(providerId + "," + providerFee + "\n");
+        }
         fW.close();
     }
 }
