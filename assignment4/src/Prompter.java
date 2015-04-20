@@ -1,7 +1,8 @@
 import java.util.Scanner;
+
 /**
  * Parent class for all the prompt controllers.
- * @author breannatucker
+ * @author Breanna Tucker
  *
  */
 public abstract class Prompter {

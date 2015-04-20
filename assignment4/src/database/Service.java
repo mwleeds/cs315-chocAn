@@ -10,7 +10,7 @@ public class Service extends Database.DatabaseEntry {
     private String name;
     private double fee;
 
-    /***
+    /**
      * Creates a Service instance
      * @param name  the name of the service
      * @param fee   how much the is to be paid

@@ -1,7 +1,7 @@
-
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import database.*;
 
 /**
  * @author Miranda Hardy
@@ -10,22 +10,21 @@ import java.util.ArrayList;
 public class ProviderPrompt extends Prompter {
 	
 	public void run() {
-		/*
-        String id = prompt(input, "Enter ID: ");
+        String id = prompt("Enter ID: ");
 		if (id.length() != 9) {
 			System.out.println("Invalid ID");
             return;
 		}
         try {
-            Main.providerDatabase.getEntry(Integer.parseInt(id));
+            ChocAnMain.providerDatabase.getEntry(Integer.parseInt(id));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Invalid ID");
             return;
         }
-        String choice = prompt(input, "1. Access Provider Directory\n2. Bill ChocAn for Service\n3. Request Report\nEnter choice: ");
+        String choice = prompt("1. Access Provider Directory\n2. Bill ChocAn for Service\n3. Request Report\nEnter choice: ");
         switch (choice) {
             case "1":
-                ArrayList<Service> services = Main.providerDirectoryDatabase.getEntryList();
+                ArrayList<Service> services = ChocAnMain.providerDirectoryDatabase.getEntryList();
                 System.out.println("Provider Directory");
                 for (int i = 0; i < services.size(); ++i) {
                     Service s = services.get(i);
@@ -46,6 +45,5 @@ public class ProviderPrompt extends Prompter {
                 System.out.println("Sorry, not a correct number entered :(");
                 break;
         }
-        */
 	}
 }
