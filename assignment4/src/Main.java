@@ -19,6 +19,12 @@ public class Main {
 
     public static void main(String []args) {
 
+        // mock data
+        Service s1 = new Service("just eat less chocolate", 42);
+        providerDirectoryDatabase.addEntry(s1);
+        Provider p1 = new Provider("Obamacare", "addr1", "city", "zip", "state");
+        providerDatabase.addEntry(p1);
+        try {System.out.println(p1.getId());} catch (Exception e) {}
 
         System.out.println("Welcome to ChocAn!");
         System.out.println("1. Provider\n2. Operator\n3. Manager\n4. Member\nEnter choice: ");
