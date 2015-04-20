@@ -11,7 +11,7 @@ public class OperatorPrompt extends Prompter{
 		while (!choice.equals("")){
 			choice = prompt("Enter a number to choose what operation to perform\n"
         		+"1. Manage Member Database\n2. Manage Provider Database\n"
-        		+"3. Manage Provider Directory Enter choice: ");
+        		+"3. Manage Provider Directory");
 	        switch (choice) {
 	            case "1":
 	                goForward("Manage Member Database");
@@ -32,8 +32,8 @@ public class OperatorPrompt extends Prompter{
 	public void manageMembers(){
 		String choice = " ";
 		while (!choice.equals("")){
-			choice = prompt("Choose an action\n1. Add a new member\n2. Update a members information\n3. Remove a member\n"+
-					"4. To go back");
+			choice = prompt("Choose an action\n1. Add a new member\n2. Get a member's information\n"
+					+"3. Update a members information\n4. Remove a member\n5. To go back");
 			switch (choice){
 			case "1":
 				goForward("New Member");
@@ -56,11 +56,31 @@ public class OperatorPrompt extends Prompter{
 				catch (Exception e) {}
 				break;
 			case "2":
-				goForward("Update Member");
+				goForward("Get Member");
 				
 				//Get the member with the specified ID
 				int id = Integer.parseInt(prompt("Member ID:"));
-				Member updateMember = Main.memberDatabase.getEntry(id);
+				Member getMember = Main.memberDatabase.getEntry(id);
+				if (getMember == null){
+					System.out.println("The member with the specified ID does not exist");
+					break;
+				}
+				
+				//Print out the member's properties
+				System.out.println("Name:\t\t"+getMember.getName());
+				System.out.println("Status:\t\t"+getMember.getStatus());
+				System.out.println("Street:\t\t"+getMember.getAddressStreet());
+				System.out.println("City:\t\t"+getMember.getAddressCity());
+				System.out.println("Zip Code:\t"+getMember.getAddressZipCode());
+				System.out.println("State:\t\t"+getMember.getAddressState());
+				
+				break;
+			case "3":
+				goForward("Update Member");
+				
+				//Get the member with the specified ID
+				int id2 = Integer.parseInt(prompt("Member ID:"));
+				Member updateMember = Main.memberDatabase.getEntry(id2);
 				if (updateMember == null){
 					System.out.println("The member with the specified ID does not exist");
 					break;
@@ -104,7 +124,7 @@ public class OperatorPrompt extends Prompter{
 				}
 				Main.memberDatabase.updateEntry(updateMember);
 				break;
-			case "3":
+			case "4":
 				goForward("Remove Member");
 				
 				//Get the member with the specified ID
@@ -133,7 +153,7 @@ public class OperatorPrompt extends Prompter{
 							break;}				
 				}
 				break;
-			case "4":
+			case "5":
 				choice = "";
 				break;
 			default:

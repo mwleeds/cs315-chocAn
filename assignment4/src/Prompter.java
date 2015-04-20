@@ -14,9 +14,13 @@ public abstract class Prompter {
 	 * @return				the response from the message
 	 */
 	public static String prompt(String promptString) {
-		System.out.println(promptString);
-		String response = Main.input.next();
-		return response;
+		try{
+			System.out.println(promptString);
+			String response = Main.input.next();
+			Thread.sleep(5);
+			return response;}
+		catch (Exception e){ }
+		return null;
 	}
 	
 	/***
@@ -33,7 +37,7 @@ public abstract class Prompter {
 	 */
 	public void goBack(){
 		promptPath = promptPath.substring(0, promptPath.lastIndexOf(">"));
-		System.out.println("");
+		System.out.println(promptPath);
 	}
 	
 	
