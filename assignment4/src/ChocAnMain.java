@@ -2,7 +2,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+import database.*;
+
+public class ChocAnMain {
 
     //The file names for all the databases
     private static final String memberDatabaseFile = "member_database.dat";

@@ -1,5 +1,7 @@
 import java.io.*;
 
+import database.Member;
+
 public class MemberReport extends Report {
     private static Member member;
     public MemberReport(File f, Member member) {

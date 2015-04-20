@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import database.Member;
 
 public class OperatorPrompt extends Prompter{
 
@@ -48,7 +48,7 @@ public class OperatorPrompt extends Prompter{
 				
 				//Add the new member to the member database
 				Member newMember = new Member(name,status,street,city,zip,state);
-				Main.memberDatabase.addEntry(newMember);
+				ChocAnMain.memberDatabase.addEntry(newMember);
 				
 				//Output that the member has been created
 				try{
@@ -60,7 +60,7 @@ public class OperatorPrompt extends Prompter{
 				
 				//Get the member with the specified ID
 				int id = Integer.parseInt(prompt("Member ID:"));
-				Member getMember = Main.memberDatabase.getEntry(id);
+				Member getMember = ChocAnMain.memberDatabase.getEntry(id);
 				if (getMember == null){
 					System.out.println("The member with the specified ID does not exist");
 					break;
@@ -80,7 +80,7 @@ public class OperatorPrompt extends Prompter{
 				
 				//Get the member with the specified ID
 				int id2 = Integer.parseInt(prompt("Member ID:"));
-				Member updateMember = Main.memberDatabase.getEntry(id2);
+				Member updateMember = ChocAnMain.memberDatabase.getEntry(id2);
 				if (updateMember == null){
 					System.out.println("The member with the specified ID does not exist");
 					break;
@@ -122,14 +122,14 @@ public class OperatorPrompt extends Prompter{
 						System.out.println("Invalid selection");
 					}
 				}
-				Main.memberDatabase.updateEntry(updateMember);
+				ChocAnMain.memberDatabase.updateEntry(updateMember);
 				break;
 			case "4":
 				goForward("Remove Member");
 				
 				//Get the member with the specified ID
 				int memberid = Integer.parseInt(prompt("Member ID:"));
-				Member removeMember = Main.memberDatabase.getEntry(memberid);
+				Member removeMember = ChocAnMain.memberDatabase.getEntry(memberid);
 				if (removeMember == null){
 					System.out.println("The member with the specified ID does not exist");
 					break;
@@ -141,7 +141,7 @@ public class OperatorPrompt extends Prompter{
 					conformation = prompt("Are you sure?\n1. Yes\n2. No");
 					switch (conformation){
 						case "1":
-							Main.memberDatabase.removeEntry(removeMember);
+							ChocAnMain.memberDatabase.removeEntry(removeMember);
 							System.out.println("The member was deleted");
 							break;
 						case "2":

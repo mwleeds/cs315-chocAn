@@ -1,26 +1,26 @@
+package database;
+
 /**
- * The Provider class that holds information on an individual provider
+ * The Member class that holds information on an individual member
  * @author  Ryan Miitchell
  */
-public class Provider extends Database.DatabaseEntry {
+public class Member extends Database.DatabaseEntry{
 
-    //The provider property variables
-    private String name;
-    private String addressStreet;
-    private String addressCity;
-    private String addressZipCode;
-    private String addressState;
+    //The member property variables
+    private String name, status, addressStreet, addressCity, addressZipCode, addressState;
 
     /***
-     * Creates a Provider instance
-     * @param name              the name of the provider
-     * @param addressStreet     the street the provider is located on
-     * @param addressCity       the city the provider is located in
-     * @param addressZipCode    the zip code the provider is located in
-     * @param addressState      the state the provider is located in
+     * Creates a Member instance
+     * @param name              the name of the member
+     * @param status			the status of the membership of the member
+     * @param addressStreet     the street the member lives on
+     * @param addressCity       the city the member lives in
+     * @param addressZipCode    the zip code the member lives in
+     * @param addressState      the state the member lives in
      */
-    public Provider(String name, String addressStreet, String addressCity, String addressZipCode, String addressState){
+    public Member(String name, String status, String addressStreet, String addressCity, String addressZipCode, String addressState){
         this.name = name;
+        this.status = status;
         this.addressStreet = addressStreet;
         this.addressCity = addressCity;
         this.addressZipCode = addressZipCode;
@@ -32,6 +32,14 @@ public class Provider extends Database.DatabaseEntry {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getAddressStreet() {
