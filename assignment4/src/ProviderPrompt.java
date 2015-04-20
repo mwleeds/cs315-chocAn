@@ -15,8 +15,9 @@ public class ProviderPrompt extends Prompter {
 			System.out.println("Invalid ID");
             return;
 		}
+        Provider thisProvider;
         try {
-            ChocAnMain.providerDatabase.getEntry(Integer.parseInt(id));
+            thisProvider = ChocAnMain.providerDatabase.getEntry(Integer.parseInt(id));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Invalid ID");
             return;
@@ -38,8 +39,24 @@ public class ProviderPrompt extends Prompter {
                 //TODO
                 break;
             case "3":
-                System.out.println("Provider Report");
-                //TODO
+                String filename = prompt("Enter report file name?");
+                File reportFile = new File(filename);
+                if (reportFile.exists()) {
+                    String response = prompt("File exists. Overwrite? [Y/n]");
+                    if (response.substring(0,0).toUpperCase() == "N")
+                        return;
+                    else 
+                        reportFile.delete();
+                }
+                try {
+                    reportFile.createNewFile();
+                    ProviderReport pReport = new ProviderReport(reportFile, thisProvider);
+                    pReport.generateReport();
+                } catch (IOException e) {
+                    System.out.println("Error writing to file " + filename);
+                    System.out.println(e.getMessage());
+                    return;
+                }
                 break;
             default:
                 System.out.println("Sorry, not a correct number entered :(");
