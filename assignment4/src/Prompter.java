@@ -1,6 +1,10 @@
+
+
+
 import java.util.Scanner;
 /**
  * Parent class for all the prompt controllers.
+ * @author Ryan Mitchell
  * @author breannatucker
  *
  */
@@ -16,7 +20,7 @@ public abstract class Prompter {
 	public static String prompt(String promptString) {
 		try{
 			System.out.println(promptString);
-			String response = Main.input.next();
+			String response = ChocAnMain.input.next();
 			Thread.sleep(5);
 			return response;}
 		catch (Exception e){ }
