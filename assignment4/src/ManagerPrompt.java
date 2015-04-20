@@ -7,13 +7,13 @@ import java.util.Scanner;
  * @author Matthew Leeds
  *
  */
-public class ManagerPrompt extends PromptController {
+public class ManagerPrompt extends Prompter {
 
-	public static void manager(Scanner input) {
-		String filename = prompt(input, "Enter report file name?");
+	public void run() {
+		String filename = prompt("Enter report file name?");
 		File ReportFile = new File(filename);
 		if (ReportFile.exists()) {
-			String response = prompt(input, "File exists. Overwrite? [Y/n]");
+			String response = prompt("File exists. Overwrite? [Y/n]");
 			if (response.substring(0,0).toUpperCase() == "N")
 				return;
 		} else {

@@ -5,9 +5,10 @@ import java.util.Scanner;
  * @author Miranda Hardy
  * @author Matthew Leeds
  */
-public class ProviderPrompt extends PromptController {
+public class ProviderPrompt extends Prompter {
 	
-	public static void provider(Scanner input) {
+	public void run() {
+		/*
         String id = prompt(input, "Enter ID: ");
 		if (id.length() != 9) {
 			System.out.println("Invalid ID");
@@ -31,5 +32,6 @@ public class ProviderPrompt extends PromptController {
                 System.out.println("Sorry, not a correct number entered :(");
                 break;
         }
+        */
 	}
 }

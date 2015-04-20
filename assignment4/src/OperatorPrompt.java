@@ -1,21 +1,23 @@
 import java.util.Scanner;
 
-public class OperatorPrompt extends PromptController {
+public class OperatorPrompt extends Prompter{
 
-	public static void operator(Scanner input) {
-        String id = prompt(input, "Enter ID: ");
-		if (id.length() != 9) {
-			System.out.println("Invalid ID");
-            return;
-		}
-        String choice = prompt(input, "1. Member Database\n2. Provider Database\nEnter choice: ");
+	public void run() {
+		
+		goForward("Operator");
+		
+		//Choose what database to manage
+        String choice = prompt("Enter a number to choose what operation to perform\n"
+        		+"1. Manage Member Database\n2. Manage Provider Database\n"
+        		+ "3. Manage Provider Directory Enter choice: ");
         switch (choice) {
             case "1":
-                System.out.println("Member Database");
+                goForward("Manage Member Database");
                 //TODO MemberDatabase();
+                
                 break;
             case "2":
-                System.out.println("Provider Database");
+            	goForward("Manage Provider Database");
                 //TODO ProviderDatabase();
                 break;
             default:

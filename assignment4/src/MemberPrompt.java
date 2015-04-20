@@ -7,15 +7,15 @@ import java.lang.Math;
  * @author Matthew Leeds
  *
  */
-public class MemberPrompt extends PromptController {
+public class MemberPrompt extends Prompter {
 
-	public static void member(Scanner input) {
-        System.out.println("Enter Member ID: ");
+	public void run() {
+        /*System.out.println("Enter Member ID: ");
         int id = input.nextInt();
         if ((int)Math.ceil(Math.log10(id)) != 9) {
             System.out.println("Error: Member IDs must be 9 digits long!");
             return;
-        }
+        }*/
         /*Member thisMember;
         try {
             thisMember = MemberDatabase.getMember(id);

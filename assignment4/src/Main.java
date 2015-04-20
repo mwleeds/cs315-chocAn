@@ -4,38 +4,45 @@ import java.util.Scanner;
 
 public class Main {
 
-
     //The file names for all the databases
     private static final String memberDatabaseFile = "member_database.dat";
     private static final String providerDatabaseFile = "provider_database.dat";
     private static final String serviceDatabaseFile = "service_database.dat";
     private static final String providedServiceDatabaseFile = "provided_service_database.dat";
 
-    //The databases
+    //The databases for logging all necessary information
     public static final Database<Member> memberDatabase = new Database<Member>(memberDatabaseFile);
     public static final Database<Provider> providerDatabase = new Database<Provider> (providerDatabaseFile);
     public static final Database<Service> providerDirectoryDatabase = new Database<Service>(serviceDatabaseFile);
     public static final Database<ProvidedService> providedServiceDatabase = new Database<ProvidedService>(providedServiceDatabaseFile);
 
+    //Instantiate the input scanner
+    public static final Scanner input = new Scanner(System.in);
+    
     public static void main(String []args) {
 
-
         System.out.println("Welcome to ChocAn!");
-        System.out.println("1. Provider\n2. Operator\n3. Manager\n4. Member\nEnter choice: ");
-        Scanner input = new Scanner(System.in);
+        
+        //Choose which user to log in as
+        System.out.println("Log in:\n1. Provider\n2. Operator\n3. Manager\n4. Member\nEnter choice: ");
         int choice = input.nextInt();
+        Prompter prompt;
         switch (choice) {
             case 1:
-                ProviderPrompt.provider(input);
+                prompt = new ProviderPrompt();
+                prompt.run();
                 break;
             case 2:
-                OperatorPrompt.operator(input);
+                prompt = new OperatorPrompt();
+                prompt.run();
                 break;
             case 3:
-                ManagerPrompt.manager(input);
+                prompt = new ManagerPrompt();
+                prompt.run();
                 break;
             case 4:
-                MemberPrompt.member(input);
+                prompt = new MemberPrompt();
+                prompt.run();
                 break;
             default:
                 System.out.println("Sorry, not a correct number entered :(");
