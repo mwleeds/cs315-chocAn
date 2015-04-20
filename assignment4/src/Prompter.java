@@ -32,7 +32,7 @@ public abstract class Prompter {
 	 * Goes back one level to the previous path
 	 */
 	public void goBack(){
-		promptPath = promptPath.substring(0, promptPath.lastIndexOf("<"));
+		promptPath = promptPath.substring(0, promptPath.lastIndexOf(">"));
 		System.out.println("");
 	}
 	

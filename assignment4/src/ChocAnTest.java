@@ -1,9 +1,9 @@
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+//import org.junit.Before;
+//import org.junit.Test;
+//import static org.junit.Assert.*;
 
 public class ChocAnTest {
-
+	/*	
   private Provider p;
   private Member m;
   private Service s;
@@ -43,5 +43,5 @@ public class ChocAnTest {
   @Test
   public void testReport() {
     
-  }
+  }*/
 }

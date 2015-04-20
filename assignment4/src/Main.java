@@ -21,8 +21,6 @@ public class Main {
     
     public static void main(String []args) {
 
-<<<<<<< HEAD
-=======
         // mock data
         Service s1 = new Service("just eat less chocolate", 42);
         providerDirectoryDatabase.addEntry(s1);
@@ -30,7 +28,6 @@ public class Main {
         providerDatabase.addEntry(p1);
         try {System.out.println(p1.getId());} catch (Exception e) {}
 
->>>>>>> origin/master
         System.out.println("Welcome to ChocAn!");
         
         //Choose which user to log in as

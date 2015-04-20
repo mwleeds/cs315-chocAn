@@ -10,6 +10,7 @@ public class Member extends Database.DatabaseEntry{
     /***
      * Creates a Member instance
      * @param name              the name of the member
+     * @param status			the status of the membership of the member
      * @param addressStreet     the street the member lives on
      * @param addressCity       the city the member lives in
      * @param addressZipCode    the zip code the member lives in

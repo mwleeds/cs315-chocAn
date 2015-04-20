@@ -144,8 +144,10 @@ public final class Database<T> {
      * @param id    The id of the object to be returned
      * @return      The object with the specified id or null if no object exists
      */
-    public T getEntry(int id) throws IndexOutOfBoundsException {
-        return (T) entryList.get(id);
+    public T getEntry(int id){
+    	if (id >= 0 && id < entryList.size()){
+    		return (T) entryList.get(id);}
+    	return null;
     }
 
     /**
