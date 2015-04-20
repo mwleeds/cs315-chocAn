@@ -8,7 +8,7 @@ public abstract class Prompter {
 	
 	private String promptPath = "\n";
 	
-	/***
+	/**
 	 * Prompts the user with a message and returns the response from the message
 	 * @param promptString	the string to prompt the user to respond to
 	 * @return				the response from the message
@@ -16,14 +16,14 @@ public abstract class Prompter {
 	public static String prompt(String promptString) {
 		try{
 			System.out.println(promptString);
-			String response = Main.input.next();
+			String response = ChocAnMain.input.next();
 			Thread.sleep(5);
 			return response;}
 		catch (Exception e){ }
 		return null;
 	}
 	
-	/***
+	/**
 	 * Goes further down a level into the next path and prints the path
 	 * @param path	the name of the next level
 	 */
@@ -32,7 +32,7 @@ public abstract class Prompter {
 		System.out.println(promptPath);
 	}
 	
-	/***
+	/**
 	 * Goes back one level to the previous path
 	 */
 	public void goBack(){
@@ -41,7 +41,7 @@ public abstract class Prompter {
 	}
 	
 	
-	/***
+	/**
 	 * Runs the logic for the prompter
 	 */
 	public abstract void run();

@@ -1,11 +1,11 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import database.*;
 
 public class ChocAnTest {
   private Provider p;
   private Member m;
   private Service s;
-  private Report r;
   
   @Before
   public void setUp() {
