@@ -29,7 +29,7 @@ public class ProvidedService  extends Database.DatabaseEntry {
     public ProvidedService(Date dateProvided, int memberId, int providerId, int serviceId, String comment){
 
         //Formats the dates into strings for storage
-        DateFormat dateFormat = new SimpleDateFormat("MM-DD-YYYY HH:MM:SS");
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
         this.dateProvided = dateFormat.format(dateProvided);
         this.dateInput = dateFormat.format(new Date());
 
