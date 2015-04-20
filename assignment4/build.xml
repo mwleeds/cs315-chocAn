@@ -12,6 +12,9 @@
         <delete dir="${build.dir}" />
         <delete dir="${docs.dir}" />
         <delete dir="${dist.dir}" />
+        <delete>
+            <fileset dir="." includes="**.dat"/>
+        </delete>
     </target>
 
     <!-- Creates the  build, docs and dist directory-->
@@ -27,15 +30,15 @@
         </javac>
     </target>
 
-    <!-- Creates Javadoc -->
+    <!-- Creates Javadoc 
     <target name="docs" depends="compile">
         <javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
-            <!-- Define which files / directory should get included, we include all -->
+             Define which files / directory should get included, we include all 
             <fileset dir="${src.dir}">
                 <include name="**" />
             </fileset>
         </javadoc>
-    </target>
+    </target>-->
 
     <!--Creates the deployable jar file  -->
     <target name="jar" depends="compile">
@@ -46,7 +49,7 @@
         </jar>
     </target>
 
-    <target name="main" depends="compile, jar, docs">
+    <target name="main" depends="compile, jar">
         <description>Main target</description>
     </target>
 

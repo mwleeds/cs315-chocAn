@@ -47,7 +47,7 @@ public final class Database<T> {
     private String fileName;
 
     //An array list that holds the database entries
-    private ArrayList<DatabaseEntry> entryList;
+    private ArrayList<DatabaseEntry> entryList = new ArrayList<DatabaseEntry>();
 
     /**
      * Creates or loads the database if it already exists

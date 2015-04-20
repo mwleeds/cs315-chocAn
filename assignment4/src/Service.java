@@ -2,7 +2,7 @@
  * The Service class that holds information on an individual service that a provider can provide
  * @author  Ryan Miitchell
  */
-public class Service {
+public class Service extends Database.DatabaseEntry {
 
     //The service property variables
     private String name;
