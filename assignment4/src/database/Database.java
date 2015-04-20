@@ -139,6 +139,18 @@ public final class Database<T> {
 
         return -1;
     }
+    
+    /***
+     * Clears the database's entries
+     */
+    public void clear(){
+    	entryList.clear();
+        File databaseFile = new File(fileName);
+    	databaseFile.delete();
+    	try{
+    		databaseFile.createNewFile();}
+    	catch (Exception e) { }
+    }
 
     /**
      * Returns the object stored in the database with the specified id
