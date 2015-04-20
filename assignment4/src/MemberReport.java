@@ -15,26 +15,27 @@ public class MemberReport extends Report {
     }
     public void generateReport() throws IOException {
         FileWriter fW = new FileWriter(this.file);
-        fW.write(this.member.getName() + "\n");
+        fW.write("Member name: " + this.member.getName() + "\n");
         int thisMemberId = -1;
         try { 
             thisMemberId = this.member.getId();
-            fW.write(thisMemberId + "\n"); 
+            fW.write("Member number: " + thisMemberId + "\n"); 
         } catch (Exception e) {}
-        fW.write(this.member.getAddressStreet() + "\n");
-        fW.write(this.member.getAddressCity() + "\n");
-        fW.write(this.member.getAddressZipCode() + "\n");
+        fW.write("Member address: " + this.member.getAddressStreet() + "\n");
+        fW.write("Member city: " + this.member.getAddressCity() + "\n");
+        fW.write("Member state: " + this.member.getAddressState() + "\n");
+        fW.write("Member ZIP code: " + this.member.getAddressZipCode() + "\n");
         ArrayList<ProvidedService> allServices = ChocAnMain.providedServiceDatabase.getEntryList();
         for (int i = 0; i < allServices.size(); ++i) {
             ProvidedService s = allServices.get(i);
             if (s.getMemberId() == thisMemberId) {
-                fW.write(s.getDateProvided() + "\n");
+                fW.write("Service " + i + " date provided: " + s.getDateProvided() + "\n");
                 int providerId = s.getProviderId();
                 Provider provider = ChocAnMain.providerDatabase.getEntry(providerId);
-                fW.write(provider.getName() + "\n");
+                fW.write("Service " + i + " provider name: " + provider.getName() + "\n");
                 int serviceId = s.getServiceId(); 
                 Service service = ChocAnMain.providerDirectoryDatabase.getEntry(serviceId);
-                fW.write(service.getName() + "\n");
+                fW.write("Service " + i + " name: " + service.getName() + "\n");
             }
         }
         fW.close();

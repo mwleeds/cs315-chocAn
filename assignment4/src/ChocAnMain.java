@@ -1,4 +1,4 @@
-
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,9 +31,10 @@ public class ChocAnMain {
         Member m1 = new Member("Jacob Farmer", "Suspended", "123 Maple Street", "Farmington", "12345", "WI");
         memberDatabase.addEntry(m1);
         try {System.out.println("member id " + m1.getId());} catch (Exception e) {}
-        System.out.println("Welcome to ChocAn!");
+        try { ProvidedService pS = new ProvidedService(new Date(), m1.getId(), p1.getId(), s1.getId(), "good stuff man"); } catch (Exception e) {}
+        System.out.println("\nWelcome to ChocAn!\n");
         
-        //Choose which user to log in as
+        // Choose which user to log in as
         System.out.println("Log in:\n1. Provider\n2. Operator\n3. Manager\n4. Member\nEnter choice: ");
         int choice = input.nextInt();
         Prompter prompt;

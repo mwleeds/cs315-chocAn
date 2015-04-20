@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.text.DecimalFormat;
 import database.*;
 
 /**
@@ -65,17 +66,19 @@ public class SummaryReport extends Report {
                 overallFeeTotal += s.getFee();
             }
         }
+        DecimalFormat df = new DecimalFormat("#.00");
         for (int i = 0; i < relevantProviders.size(); ++i) {
             Provider thisProvider = relevantProviders.get(i);
             int thisProviderId;
             try { thisProviderId = thisProvider.getId(); }
             catch (Exception e) { thisProviderId = -1; }
-            fW.write(thisProviderId + "\n");
-            fW.write(this.numConsultations.get(thisProviderId) + "\n");
-            fW.write(this.totalFees.get(thisProviderId) + "\n");
+            fW.write("Provider name: " + thisProvider.getName() + "\n");
+            fW.write("Provider " + i + " number: " + thisProviderId + "\n");
+            fW.write("Number of consultations: " + this.numConsultations.get(thisProviderId) + "\n");
+            fW.write("Total fee: " + df.format(this.totalFees.get(thisProviderId)) + "\n");
         }
-        fW.write(relevantProviders.size() + "\n");
-        fW.write(overallFeeTotal + "\n");
+        fW.write("\nTotal number of providers: " + relevantProviders.size() + "\n");
+        fW.write("Total of all fees: " + df.format(overallFeeTotal) + "\n");
         fW.close();
     }
     

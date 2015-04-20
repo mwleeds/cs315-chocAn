@@ -15,15 +15,16 @@ public class ProviderReport extends Report {
     }
     public void generateReport() throws IOException {
         FileWriter fW = new FileWriter(this.file);
-        fW.write(this.provider.getName() + "\n");
+        fW.write("Provider name: " + this.provider.getName() + "\n");
         int thisProviderId = -1;
         try { 
             thisProviderId = this.provider.getId();
-            fW.write(thisProviderId + "\n"); 
+            fW.write("Provider number: " + thisProviderId + "\n"); 
         } catch (Exception e) {}
-        fW.write(this.provider.getAddressStreet() + "\n");
-        fW.write(this.provider.getAddressCity() + "\n");
-        fW.write(this.provider.getAddressZipCode() + "\n");
+        fW.write("Provider address: " + this.provider.getAddressStreet() + "\n");
+        fW.write("Provider city: " + this.provider.getAddressCity() + "\n");
+        fW.write("Provider state: " + this.provider.getAddressState() + "\n");
+        fW.write("Provider ZIP code: " + this.provider.getAddressZipCode() + "\n");
         int numServicesProvided = 0;
         double totalFees = 0;
         ArrayList<ProvidedService> allServices = ChocAnMain.providedServiceDatabase.getEntryList();
@@ -31,22 +32,22 @@ public class ProviderReport extends Report {
             ProvidedService s = allServices.get(i);
             if (s.getProviderId() == thisProviderId) {
                 numServicesProvided++;
-                fW.write(s.getDateProvided() + "\n");
-                fW.write(s.getDateInput() + "\n");
+                fW.write("Service " + i + " date provided: " + s.getDateProvided() + "\n");
+                fW.write("Service " + i + " date input: " + s.getDateInput() + "\n");
                 int memberId = s.getMemberId();
                 Member m = ChocAnMain.memberDatabase.getEntry(memberId);
-                fW.write(m.getName() + "\n");
-                try { fW.write(m.getId() + "\n"); } catch (Exception e) {}
+                fW.write("Member name: " + m.getName() + "\n");
+                try { fW.write("Member number: " + m.getId() + "\n"); } catch (Exception e) {}
                 int serviceId = s.getServiceId(); 
                 Service service = ChocAnMain.providerDirectoryDatabase.getEntry(serviceId);
-                try { fW.write(service.getId() + "\n"); } catch (Exception e) {}
+                try { fW.write("Service " + i + " code: " + service.getId() + "\n"); } catch (Exception e) {}
                 double thisFee = service.getFee();
                 totalFees += thisFee;
-                fW.write(thisFee + "\n");
+                fW.write("Service " + i + " fee: " + thisFee + "\n");
             }
         }
-        fW.write(numServicesProvided + "\n");
-        fW.write(totalFees + "\n");
+        fW.write("Total number of consultations: " + numServicesProvided + "\n");
+        fW.write("Total fees: " + totalFees + "\n");
         fW.close();
     }
 }
