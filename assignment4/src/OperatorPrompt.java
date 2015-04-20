@@ -8,10 +8,10 @@ public class OperatorPrompt extends Prompter{
 		
 		//Choose what database to manage
 		String choice = " ";
-		while (!choice.equals("")){
+		while (!choice.equals("4")) {
 			choice = prompt("Enter a number to choose what operation to perform\n"
         		+"1. Manage Member Database\n2. Manage Provider Database\n"
-        		+"3. Manage Provider Directory");
+        		+"3. Manage Provider Directory\n4. To go back");
 	        switch (choice) {
 	            case "1":
 	                goForward("Manage Member Database");
@@ -19,8 +19,13 @@ public class OperatorPrompt extends Prompter{
 	                break;
 	            case "2":
 	            	goForward("Manage Provider Database");
-	                //TODO ProviderDatabase();
+	                //TODO
 	                break;
+                case "3":
+                    //TODO manage provider directory
+                    break;
+                case "4":
+                    break;
 	            default:
 	                System.out.println("Invalid selection");
 	                break;

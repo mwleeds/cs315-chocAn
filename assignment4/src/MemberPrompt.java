@@ -32,7 +32,7 @@ public class MemberPrompt extends Prompter {
 		File reportFile = new File(filename);
 		if (reportFile.exists()) {
 			String response = prompt("File exists. Overwrite? [Y/n]");
-			if (response.substring(0,0).toUpperCase() == "N")
+			if (response.substring(0,0).toUpperCase().equals("N"))
 				return;
             else 
                 reportFile.delete();

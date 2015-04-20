@@ -15,7 +15,7 @@ public class ManagerPrompt extends Prompter {
 		File ReportFile = new File(filename);
 		if (ReportFile.exists()) {
 			String response = prompt("File exists. Overwrite? [Y/n]");
-			if (response.substring(0,0).toUpperCase() == "N")
+			if (response.substring(0,0).toUpperCase().equals("N"))
 				return;
 		} else {
 			// instantiate w.e kind of report you would like
