@@ -38,7 +38,7 @@ public class SummaryReport extends Report {
         this.numConsultations = new HashMap<Integer, Integer>();
         // This maps Provider IDs to Fee totals.
         this.totalFees = new HashMap<Integer, Double>();
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-YYYY HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
         Date now = new Date();
         Date aWeekAgo = new Date(now.getTime() - 7 * 24 * 3600 * 1000);
         long overallFeeTotal = 0;
@@ -47,9 +47,9 @@ public class SummaryReport extends Report {
             int providerId;
             try { providerId = p.getProviderId(); }
             catch (Exception e) { providerId = -1 * i; }
-            Date timeInput = now;
+            Date timeInput = null;
             try { timeInput = dateFormat.parse(p.getDateInput()); }
-            catch (ParseException e) {}
+            catch (ParseException e) {System.out.println(e.getMessage());}
             if (timeInput.after(aWeekAgo)) {
                 int serviceId = p.getServiceId();
                 Service s = ChocAnMain.providerDirectoryDatabase.getEntry(serviceId);
@@ -86,8 +86,8 @@ public class SummaryReport extends Report {
      * This writes to the disk the fee totals for each provider with services provided in the past week,
      * which will be read by Acme Accounting Services.
      */ 
-    public void generateEFTReport(File file) throws IOException {
-        FileWriter fW = new FileWriter(this.file);
+    public void generateEFTReport(File eftFile) throws IOException {
+        FileWriter fW = new FileWriter(eftFile);
         Iterator<Integer> itr = this.totalFees.keySet().iterator();
         while (itr.hasNext()) {
             int providerId = itr.next();

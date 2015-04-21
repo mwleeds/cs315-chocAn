@@ -31,7 +31,11 @@ public class ChocAnMain {
         Member m1 = new Member("Jacob Farmer", "Suspended", "123 Maple Street", "Farmington", "12345", "WI");
         memberDatabase.addEntry(m1);
         try {System.out.println("member id " + m1.getId());} catch (Exception e) {}
-        try { ProvidedService pS = new ProvidedService(new Date(), m1.getId(), p1.getId(), s1.getId(), "good stuff man"); } catch (Exception e) {}
+        ProvidedService pS = null;
+        try { pS = new ProvidedService(new Date(), m1.getId(), p1.getId(), s1.getId(), "good stuff man"); } 
+        catch (Exception e) {System.out.println(e.getMessage());}
+        providedServiceDatabase.addEntry(pS);
+
         System.out.println("\nWelcome to ChocAn!\n");
         
         // Choose which user to log in as
