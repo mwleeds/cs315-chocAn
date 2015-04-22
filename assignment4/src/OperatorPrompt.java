@@ -1,4 +1,5 @@
 import database.*;
+import java.io.IOException;
 /**
  * 
  * @author Ryan Mitchell
@@ -38,6 +39,8 @@ public class OperatorPrompt extends Prompter{
                     break;
 	            default:
 	                System.out.println("Invalid selection");
+                    System.out.println("Press enter to continue");
+                    try { System.in.read(); } catch (IOException f) {}
 	                break;
 	        }
         }
@@ -101,11 +104,13 @@ public class OperatorPrompt extends Prompter{
 					String name = prompt("Name:", 20);
 					Double fee = null;
 					while (fee == null){
-						try{
-							fee = Double.parseDouble(prompt("Fee:"));}
-						catch (Exception e){
+						try {
+							fee = Double.parseDouble(prompt("Fee:"));
+                        } catch (Exception e) {
 							fee = null;
-							System.out.print("Invalid Fee");}}
+							System.out.print("Invalid Fee");
+                        }
+                    }
 					
 					//Add the service to the database
 					Service newService = new Service(name,fee);
@@ -113,7 +118,8 @@ public class OperatorPrompt extends Prompter{
 				
 				//Output that the entry has been created
 				System.out.println("The new entry has been created. It's id is "+id);
-
+                System.out.println("Press enter to continue");
+                try { System.in.read(); } catch (IOException e) {}
 				break;
 			case "2":
 				goForward("Get "+type);
@@ -162,6 +168,8 @@ public class OperatorPrompt extends Prompter{
 					System.out.println("Name:\t\t"+getService.getName());
 					System.out.println("Fee:\t\t"+getService.getFee());}
 				
+                System.out.println("Press enter to continue");
+                try { System.in.read(); } catch (IOException e) {}
 				break;
 			case "3":
 				goForward("Update "+type);
@@ -172,6 +180,8 @@ public class OperatorPrompt extends Prompter{
 					Member updateMember = ChocAnMain.memberDatabase.getEntry(id2);
 					if (updateMember == null){
 						System.out.println("The member with the specified ID does not exist");
+                        System.out.println("Press enter to continue");
+                        try { System.in.read(); } catch (IOException e) {}
 						break;
 					}
 					
@@ -211,11 +221,13 @@ public class OperatorPrompt extends Prompter{
 							System.out.println("Invalid selection");
 						}
 					}
-					ChocAnMain.memberDatabase.updateEntry(updateMember);}
-				else if (entry == EntryType.PROVIDER){
+					ChocAnMain.memberDatabase.updateEntry(updateMember);
+                } else if (entry == EntryType.PROVIDER){
 					Provider updateProvider = ChocAnMain.providerDatabase.getEntry(id2);
 					if (updateProvider == null){
 						System.out.println("The provider with the specified ID does not exist");
+                        System.out.println("Press enter to continue");
+                        try { System.in.read(); } catch (IOException e) {}
 						break;
 					}
 					
@@ -251,11 +263,13 @@ public class OperatorPrompt extends Prompter{
 							System.out.println("Invalid selection");
 						}
 					}
-					ChocAnMain.providerDatabase.updateEntry(updateProvider);}
-				else if (entry == EntryType.SERVICE){
+					ChocAnMain.providerDatabase.updateEntry(updateProvider);
+				} else if (entry == EntryType.SERVICE) {
 					Service updateService = ChocAnMain.providerDirectoryDatabase.getEntry(id2);
 					if (updateService == null){
 						System.out.println("The service with the specified ID does not exist");
+                        System.out.println("Press enter to continue");
+                        try { System.in.read(); } catch (IOException e) {}
 						break;
 					}
 					
@@ -282,8 +296,12 @@ public class OperatorPrompt extends Prompter{
 							break;
 						default:
 							System.out.println("Invalid selection");
-							break;}}}
-						
+							break;
+                        }
+                    }
+                }
+                System.out.println("Press enter to continue");
+                try { System.in.read(); } catch (IOException e) {}
 				break;
 			case "4":
 				goForward("Remove "+type);
@@ -299,14 +317,16 @@ public class OperatorPrompt extends Prompter{
 					removeEntry = ChocAnMain.providerDirectoryDatabase.getEntry(memberid);}
 				if (removeEntry == null){
 					System.out.println("The "+typeLower+" with the specified ID does not exist");
+                    System.out.println("Press enter to continue");
+                    try { System.in.read(); } catch (IOException e) {}
 					break;
 				}
 				
 				//Delete member if the user confirms
-				String conformation = "";
-				while (conformation.equals("")){
-					conformation = prompt("Are you sure?\n1. Yes\n2. No");
-					switch (conformation){
+				String confirm = "";
+				while (confirm.equals("")){
+					confirm = prompt("Are you sure?\n1. Yes\n2. No");
+					switch (confirm) {
 						case "1":
 							if (entry == EntryType.MEMBER){
 								ChocAnMain.memberDatabase.removeEntry(removeEntry);}
@@ -321,20 +341,22 @@ public class OperatorPrompt extends Prompter{
 							break;
 						default:
 							System.out.println("Invalid selection");
-							conformation = "";
+							confirm = "";
 							break;}				
 				}
+                System.out.println("Press enter to continue");
+                try { System.in.read(); } catch (IOException e) {}
 				break;
 			case "5":
 				choice = "";
 				break;
 			default:
 				System.out.println("Invalid selection");
+                System.out.println("Press enter to continue");
+                try { System.in.read(); } catch (IOException e) {}
 				break;
 			}
 			goBack();
 		}
 	}
-	
-	
 }

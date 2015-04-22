@@ -19,11 +19,15 @@ public class ProviderPrompt extends Prompter {
         String id = prompt("Enter ID: ");
 		if (id.length() != 9) {
 			System.out.println("Invalid ID");
+            System.out.println("Press enter to continue");
+            try { System.in.read(); } catch (IOException e) {}
             return;
 		}
         Provider thisProvider = ChocAnMain.providerDatabase.getEntry(Integer.parseInt(id));
         if (thisProvider == null ){
-			System.out.println("Invalid ID");
+            System.out.println("Invalid ID");
+            System.out.println("Press enter to continue");
+            try { System.in.read(); } catch (IOException e) {}
             return;
         }
         String choice = "";
@@ -47,11 +51,15 @@ public class ProviderPrompt extends Prompter {
                     String memberId = prompt("Enter Member ID: ");
                     if (memberId.length() != 9) {
                         System.out.println("Error: Member IDs must be 9 digits long!");
+                        System.out.println("Press enter to continue");
+                        try { System.in.read(); } catch (IOException e) {}
                         break;
                     }
                     Member thisMember = ChocAnMain.memberDatabase.getEntry(Integer.parseInt(memberId));
                     if (thisMember == null) {
                         System.out.println("No member found for ID " + memberId);
+                        System.out.println("Press enter to continue");
+                        try { System.in.read(); } catch (IOException e) {}
                         break;
                     }
                     String strDate = prompt("Enter date service provided (MM-DD-YYYY): ");
@@ -61,12 +69,16 @@ public class ProviderPrompt extends Prompter {
                         dateProvided = dateFormat.parse(strDate);
                     } catch (ParseException e) { 
                         System.out.println("Error parsing date " + strDate);
+                        System.out.println("Press enter to continue");
+                        try { System.in.read(); } catch (IOException f) {}
                         break;
                     }
                     int serviceId = Integer.parseInt(prompt("Enter service ID: "));
                     Service thisService = ChocAnMain.providerDirectoryDatabase.getEntry(serviceId);
                     if (thisService == null) {
                         System.out.println("Error: Invalid service ID provided.");
+                        System.out.println("Press enter to continue");
+                        try { System.in.read(); } catch (IOException g) {}
                         break;
                     }
                     System.out.println("Provided service: " + thisService.getName());
@@ -81,8 +93,7 @@ public class ProviderPrompt extends Prompter {
                    
 
                     System.out.println("Record successfully written to the database. Press enter to continue");
-                    try { System.in.read(); } catch (IOException e) {}
-
+                    try { System.in.read(); } catch (IOException h) {}
                     break;
                 case "3":
                     goForward("Request Report");
@@ -102,11 +113,13 @@ public class ProviderPrompt extends Prompter {
                     } catch (IOException e) {
                         System.out.println("Error writing to file " + filename);
                         System.out.println(e.getMessage());
-                        return;
+                        System.out.println("Press enter to continue");
+                        try { System.in.read(); } catch (IOException i) {}
+                        break;
                     }
 
                     System.out.println("Record successfully written to the database. Press enter to continue");
-                    try { System.in.read(); } catch (IOException e) {}
+                    try { System.in.read(); } catch (IOException j) {}
                     break;
                 case "4":
                     break;
