@@ -72,13 +72,13 @@ public class SummaryReport extends Report {
             int thisProviderId;
             try { thisProviderId = thisProvider.getId(); }
             catch (Exception e) { thisProviderId = -1; }
-            fW.write("Provider name: " + thisProvider.getName() + "\n");
-            fW.write("Provider " + i + " number: " + thisProviderId + "\n");
-            fW.write("Number of consultations: " + this.numConsultations.get(thisProviderId) + "\n");
-            fW.write("Total fee: " + df.format(this.totalFees.get(thisProviderId)) + "\n");
+            fW.write("Provider name: " + thisProvider.getName() + newLine);
+            fW.write("Provider " + i + " number: " + thisProviderId + newLine);
+            fW.write("Number of consultations: " + this.numConsultations.get(thisProviderId) + newLine);
+            fW.write("Total fee: " + df.format(this.totalFees.get(thisProviderId)) + newLine);
         }
-        fW.write("\nTotal number of providers: " + relevantProviders.size() + "\n");
-        fW.write("Total of all fees: " + df.format(overallFeeTotal) + "\n");
+        fW.write("\nTotal number of providers: " + relevantProviders.size() + newLine);
+        fW.write("Total of all fees: " + df.format(overallFeeTotal) + newLine);
         fW.close();
     }
     
@@ -92,7 +92,7 @@ public class SummaryReport extends Report {
         while (itr.hasNext()) {
             int providerId = itr.next();
             double providerFee = this.totalFees.get(providerId);
-            fW.write(providerId + "," + providerFee + "\n");
+            fW.write(providerId + "," + providerFee + newLine);
         }
         fW.close();
     }

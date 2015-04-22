@@ -15,27 +15,27 @@ public class MemberReport extends Report {
     }
     public void generateReport() throws IOException {
         FileWriter fW = new FileWriter(this.file);
-        fW.write("Member name: " + this.member.getName() + "\n");
+        fW.write("Member name: " + this.member.getName() + newLine);
         int thisMemberId = -1;
         try { 
             thisMemberId = this.member.getId();
-            fW.write("Member number: " + thisMemberId + "\n"); 
+            fW.write("Member number: " + thisMemberId + newLine); 
         } catch (Exception e) {}
-        fW.write("Member address: " + this.member.getAddressStreet() + "\n");
-        fW.write("Member city: " + this.member.getAddressCity() + "\n");
-        fW.write("Member state: " + this.member.getAddressState() + "\n");
-        fW.write("Member ZIP code: " + this.member.getAddressZipCode() + "\n");
+        fW.write("Member address: " + this.member.getAddressStreet() + newLine);
+        fW.write("Member city: " + this.member.getAddressCity() + newLine);
+        fW.write("Member state: " + this.member.getAddressState() + newLine);
+        fW.write("Member ZIP code: " + this.member.getAddressZipCode() + newLine);
         ArrayList<ProvidedService> allServices = ChocAnMain.providedServiceDatabase.getEntryList();
         for (int i = 0; i < allServices.size(); ++i) {
             ProvidedService s = allServices.get(i);
             if (s.getMemberId() == thisMemberId) {
-                fW.write("Service " + i + " date provided: " + s.getDateProvided() + "\n");
+                fW.write("Service " + i + " date provided: " + s.getDateProvided() + newLine);
                 int providerId = s.getProviderId();
                 Provider provider = ChocAnMain.providerDatabase.getEntry(providerId);
-                fW.write("Service " + i + " provider name: " + provider.getName() + "\n");
+                fW.write("Service " + i + " provider name: " + provider.getName() + newLine);
                 int serviceId = s.getServiceId(); 
                 Service service = ChocAnMain.providerDirectoryDatabase.getEntry(serviceId);
-                fW.write("Service " + i + " name: " + service.getName() + "\n");
+                fW.write("Service " + i + " name: " + service.getName() + newLine);
             }
         }
         fW.close();

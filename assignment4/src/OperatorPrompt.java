@@ -1,5 +1,9 @@
 import database.*;
-
+/**
+ * 
+ * @author Ryan Mitchell
+ *
+ */
 public class OperatorPrompt extends Prompter{
 	
 	//The different type of databases
@@ -69,12 +73,12 @@ public class OperatorPrompt extends Prompter{
 				int id = 0;
 				if (entry == EntryType.MEMBER){
 					//Get the properties of the new member
-					String name = prompt("Name:");
+					String name = prompt("Name:", 25);
 					String status = prompt("Status:");
-					String street = prompt("Address Street:");
-					String city = prompt("Address City:");
-					String zip = prompt("Address Zip Code:");
-					String state = prompt("Address State:");
+					String street = prompt("Address Street:", 25);
+					String city = prompt("Address City:", 14);
+					String zip = prompt("Address Zip Code:", 5);
+					String state = prompt("Address State:", 2);
 					
 					//Add the member to the database
 					Member newMember = new Member(name,status,street,city,zip,state);
@@ -82,11 +86,11 @@ public class OperatorPrompt extends Prompter{
 				
 				else if (entry == EntryType.PROVIDER){
 					//Get the properties for the provider
-					String name = prompt("Name:");
-					String street = prompt("Address Street:");
-					String city = prompt("Address City:");
-					String zip = prompt("Address Zip Code:");
-					String state = prompt("Address State:");
+					String name = prompt("Name:", 25);
+					String street = prompt("Address Street:", 25);
+					String city = prompt("Address City:", 14);
+					String zip = prompt("Address Zip Code:", 5);
+					String state = prompt("Address State:", 2);
 					
 					//Add the provider to the database
 					Provider newProvider = new Provider(name,street,city,zip,state);
@@ -94,7 +98,7 @@ public class OperatorPrompt extends Prompter{
 				
 				else if (entry == EntryType.SERVICE){
 					//Get the properties for the service
-					String name = prompt("Name:");
+					String name = prompt("Name:", 20);
 					Double fee = null;
 					while (fee == null){
 						try{
@@ -178,7 +182,7 @@ public class OperatorPrompt extends Prompter{
 							+"4. City\n5. Zip Code\n6. State\n7. To go back");
 						switch (property){
 						case "1":
-							updateMember.setName(prompt("New name:"));
+							updateMember.setName(prompt("New name:", 25));
 							System.out.println("Name updated");
 							break;
 						case "2":
@@ -186,19 +190,19 @@ public class OperatorPrompt extends Prompter{
 							System.out.println("Status updated");
 							break;
 						case "3":
-							updateMember.setAddressStreet(prompt("New street:"));
+							updateMember.setAddressStreet(prompt("New street:", 25));
 							System.out.println("Street updated");
 							break;
 						case "4":
-							updateMember.setAddressCity(prompt("New city:"));
+							updateMember.setAddressCity(prompt("New city:", 14));
 							System.out.println("City updated");
 							break;
 						case "5":
-							updateMember.setAddressZipCode(prompt("New zip code:"));
+							updateMember.setAddressZipCode(prompt("New zip code:", 5));
 							System.out.println("Zip code updated");
 							break;
 						case "6":
-							updateMember.setAddressState(prompt("New state:"));
+							updateMember.setAddressState(prompt("New state:", 2));
 							System.out.println("State updated");
 							break;
 						case "7":
@@ -222,23 +226,23 @@ public class OperatorPrompt extends Prompter{
 							+"3. City\n4. Zip Code\n5. State\n6. To go back");
 						switch (property){
 						case "1":
-							updateProvider.setName(prompt("New name:"));
+							updateProvider.setName(prompt("New name:", 25));
 							System.out.println("Name updated");
 							break;
 						case "2":
-							updateProvider.setAddressStreet(prompt("New street:"));
+							updateProvider.setAddressStreet(prompt("New street:", 25));
 							System.out.println("Street updated");
 							break;
 						case "3":
-							updateProvider.setAddressCity(prompt("New city:"));
+							updateProvider.setAddressCity(prompt("New city:", 14));
 							System.out.println("City updated");
 							break;
 						case "4":
-							updateProvider.setAddressZipCode(prompt("New zip code:"));
+							updateProvider.setAddressZipCode(prompt("New zip code:", 5));
 							System.out.println("Zip code updated");
 							break;
 						case "5":
-							updateProvider.setAddressState(prompt("New state:"));
+							updateProvider.setAddressState(prompt("New state:", 2));
 							System.out.println("State updated");
 							break;
 						case "6":
@@ -261,7 +265,7 @@ public class OperatorPrompt extends Prompter{
 						property = prompt("What would you like to update?\n1. Name\n2. Fee\n3. To go back");
 						switch (property){
 						case "1":
-							updateService.setName(prompt("New name:"));
+							updateService.setName(prompt("New name:", 20));
 							System.out.println("Name updated");
 							break;
 						case "2":

@@ -23,45 +23,33 @@ public class ChocAnMain {
     
     public static void main(String []args) {
 
-        // mock data
-        Service s1 = new Service("just eat less chocolate", 42);
-        providerDirectoryDatabase.addEntry(s1);
-        Provider p1 = new Provider("Obamacare", "addr1", "city", "zip", "state");
-        providerDatabase.addEntry(p1);
-        Member m1 = new Member("Jacob Farmer", "Suspended", "123 Maple Street", "Farmington", "12345", "WI");
-        memberDatabase.addEntry(m1);
-        try {System.out.println("member id " + m1.getId());} catch (Exception e) {}
-        ProvidedService pS = null;
-        try { pS = new ProvidedService(new Date(), m1.getId(), p1.getId(), s1.getId(), "good stuff man"); } 
-        catch (Exception e) {System.out.println(e.getMessage());}
-        providedServiceDatabase.addEntry(pS);
-
-        System.out.println("\nWelcome to ChocAn!\n");
-        
         // Choose which user to log in as
+        Prompter prompt;
+        while (true){
+        System.out.println("\nWelcome to ChocAn!\n");
         System.out.println("Log in:\n1. Provider\n2. Operator\n3. Manager\n4. Member\nEnter choice: ");
         int choice = input.nextInt();
-        Prompter prompt;
-        switch (choice) {
-            case 1:
-                prompt = new ProviderPrompt();
-                prompt.run();
-                break;
-            case 2:
-                prompt = new OperatorPrompt();
-                prompt.run();
-                break;
-            case 3:
-                prompt = new ManagerPrompt();
-                prompt.run();
-                break;
-            case 4:
-                prompt = new MemberPrompt();
-                prompt.run();
-                break;
-            default:
-                System.out.println("Sorry, not a correct number entered :(");
-                break;
+	        switch (choice) {
+	            case 1:
+	                prompt = new ProviderPrompt();
+	                prompt.run();
+	                break;
+	            case 2:
+	                prompt = new OperatorPrompt();
+	                prompt.run();
+	                break;
+	            case 3:
+	                prompt = new ManagerPrompt();
+	                prompt.run();
+	                break;
+	            case 4:
+	                prompt = new MemberPrompt();
+	                prompt.run();
+	                break;
+	            default:
+	                System.out.println("Invalid Selection");
+	                break;
+	        }
         }
 
     }

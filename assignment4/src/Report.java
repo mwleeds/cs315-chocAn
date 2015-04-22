@@ -5,6 +5,10 @@ import java.io.*;
  * @author Matthew Leeds
  */
 public abstract class Report {
-    public abstract void generateReport() throws IOException;
     public File file;
+    
+    //Get the line break symbol for the OS
+    protected static final String newLine = System.lineSeparator();
+    
+    public abstract void generateReport() throws IOException;
 }

@@ -2,7 +2,7 @@ package database;
 
 /**
  * The Member class that holds information on an individual member
- * @author  Ryan Miitchell
+ * @author  Ryan Mitchell
  */
 public class Member extends Database.DatabaseEntry{
 

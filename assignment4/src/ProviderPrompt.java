@@ -20,13 +20,12 @@ public class ProviderPrompt extends Prompter {
 			System.out.println("Invalid ID");
             return;
 		}
-        Provider thisProvider;
-        try {
-            thisProvider = ChocAnMain.providerDatabase.getEntry(Integer.parseInt(id));
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid ID");
+        Provider thisProvider = ChocAnMain.providerDatabase.getEntry(Integer.parseInt(id));
+        if (thisProvider == null ){
+			System.out.println("Invalid ID");
             return;
         }
+        System.out.println(thisProvider);
         String choice = "";
         while (!choice.equals("4")) {
             choice = prompt("Enter a number to choose what operation to perform\n1. Access Provider Directory\n2. Bill ChocAn for Service\n3. Request Report\n4. To go back");
@@ -75,7 +74,7 @@ public class ProviderPrompt extends Prompter {
                     comments = prompt("Comments (optional): ");
                     ProvidedService pS = new ProvidedService(dateProvided, Integer.parseInt(memberId), Integer.parseInt(id), serviceId, comments);
                     ChocAnMain.providedServiceDatabase.addEntry(pS);
-                    prompt("Record successfully written to the database. Press enter to continue");
+                    System.out.println("Record successfully written to the database");
                     break;
                 case "3":
                     goForward("Request Report");
@@ -84,7 +83,7 @@ public class ProviderPrompt extends Prompter {
                     if (reportFile.exists()) {
                         String response = prompt("File exists. Overwrite? [Y/n]");
                         if (response.substring(0,0).toUpperCase().equals("N"))
-                            return;
+                            break;
                         else 
                             reportFile.delete();
                     }

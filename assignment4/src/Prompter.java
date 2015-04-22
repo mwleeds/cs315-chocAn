@@ -5,12 +5,8 @@ import java.util.Scanner;
 
 /**
  * Parent class for all the prompt controllers.
-<<<<<<< HEAD
  * @author Ryan Mitchell
  * @author breannatucker
-=======
- * @author Breanna Tucker
->>>>>>> origin/master
  *
  */
 public abstract class Prompter {

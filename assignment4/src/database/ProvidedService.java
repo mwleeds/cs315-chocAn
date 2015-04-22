@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * The Provided Service class that holds information on an individual service that were provided by a provider
- * @author  Ryan Miitchell
+ * @author  Ryan Mitchell
  */
 public class ProvidedService  extends Database.DatabaseEntry {
 

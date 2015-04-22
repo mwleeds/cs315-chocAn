@@ -17,13 +17,7 @@ public class MemberPrompt extends Prompter {
             System.out.println("Error: Member IDs must be 9 digits long!");
             return;
         }
-        Member thisMember;
-        try {
-            thisMember = ChocAnMain.memberDatabase.getEntry(Integer.parseInt(id));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+        Member thisMember = ChocAnMain.memberDatabase.getEntry(Integer.parseInt(id));
         if (thisMember == null) {
             System.out.println("No member found for ID " + id);
             return;
