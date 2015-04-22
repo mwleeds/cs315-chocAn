@@ -76,13 +76,13 @@ public class ProviderPrompt extends Prompter {
                     comments = prompt("Comments (optional): ");
                     ProvidedService pS = new ProvidedService(dateProvided, Integer.parseInt(memberId), Integer.parseInt(id), serviceId, comments);
                     ChocAnMain.providedServiceDatabase.addEntry(pS);
-<<<<<<< HEAD
+
                     System.out.println("Record successfully written to the database");
                    
-=======
+
                     System.out.println("Record successfully written to the database. Press enter to continue");
                     try { System.in.read(); } catch (IOException e) {}
->>>>>>> origin/master
+
                     break;
                 case "3":
                     goForward("Request Report");
@@ -104,14 +104,11 @@ public class ProviderPrompt extends Prompter {
                         System.out.println(e.getMessage());
                         return;
                     }
-<<<<<<< HEAD
-                    
-=======
+
                     System.out.println("Record successfully written to the database. Press enter to continue");
                     try { System.in.read(); } catch (IOException e) {}
                     break;
                 case "4":
->>>>>>> origin/master
                     break;
                 default:
                     System.out.println("Invalid selection");
