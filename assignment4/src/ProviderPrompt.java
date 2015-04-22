@@ -14,6 +14,7 @@ import database.*;
 public class ProviderPrompt extends Prompter {
 	
 	public void run() {
+		
         goForward("Provider");
         String id = prompt("Enter ID: ");
 		if (id.length() != 9) {
@@ -25,7 +26,6 @@ public class ProviderPrompt extends Prompter {
 			System.out.println("Invalid ID");
             return;
         }
-        System.out.println(thisProvider);
         String choice = "";
         while (!choice.equals("4")) {
             choice = prompt("Enter a number to choose what operation to perform\n1. Access Provider Directory\n2. Bill ChocAn for Service\n3. Request Report\n4. To go back");
@@ -75,6 +75,7 @@ public class ProviderPrompt extends Prompter {
                     ProvidedService pS = new ProvidedService(dateProvided, Integer.parseInt(memberId), Integer.parseInt(id), serviceId, comments);
                     ChocAnMain.providedServiceDatabase.addEntry(pS);
                     System.out.println("Record successfully written to the database");
+                   
                     break;
                 case "3":
                     goForward("Request Report");
@@ -96,11 +97,14 @@ public class ProviderPrompt extends Prompter {
                         System.out.println(e.getMessage());
                         return;
                     }
+                    
                     break;
                 default:
                     System.out.println("Invalid selection");
+                    goForward("");
                     break;
             }
+            goBack();
         } // end while
         goBack();
 	}

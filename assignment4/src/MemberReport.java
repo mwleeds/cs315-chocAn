@@ -8,36 +8,48 @@ import database.*;
  * @author Matthew Leeds
  */
 public class MemberReport extends Report {
-    private static Member member;
+    
+	private File reportFile;
+	private Member member;
+    
     public MemberReport(File f, Member member) {
-        this.file = f;
+        this.reportFile = f;
         this.member = member;
     }
+    
     public void generateReport() throws IOException {
-        FileWriter fW = new FileWriter(this.file);
-        fW.write("Member name: " + this.member.getName() + newLine);
-        int thisMemberId = -1;
-        try { 
-            thisMemberId = this.member.getId();
+        FileWriter fW = new FileWriter(reportFile);
+        try{
+        	//Write the member properties
+        	int thisMemberId = member.getId();
+        	fW.write("Member name: " + member.getName() + newLine);
             fW.write("Member number: " + thisMemberId + newLine); 
-        } catch (Exception e) {}
-        fW.write("Member address: " + this.member.getAddressStreet() + newLine);
-        fW.write("Member city: " + this.member.getAddressCity() + newLine);
-        fW.write("Member state: " + this.member.getAddressState() + newLine);
-        fW.write("Member ZIP code: " + this.member.getAddressZipCode() + newLine);
-        ArrayList<ProvidedService> allServices = ChocAnMain.providedServiceDatabase.getEntryList();
-        for (int i = 0; i < allServices.size(); ++i) {
-            ProvidedService s = allServices.get(i);
-            if (s.getMemberId() == thisMemberId) {
-                fW.write("Service " + i + " date provided: " + s.getDateProvided() + newLine);
-                int providerId = s.getProviderId();
-                Provider provider = ChocAnMain.providerDatabase.getEntry(providerId);
-                fW.write("Service " + i + " provider name: " + provider.getName() + newLine);
-                int serviceId = s.getServiceId(); 
-                Service service = ChocAnMain.providerDirectoryDatabase.getEntry(serviceId);
-                fW.write("Service " + i + " name: " + service.getName() + newLine);
-            }
+	        fW.write("Member address: " + member.getAddressStreet() + newLine);
+	        fW.write("Member city: " + member.getAddressCity() + newLine);
+	        fW.write("Member state: " + member.getAddressState() + newLine);
+	        fW.write("Member ZIP code: " + member.getAddressZipCode() + newLine + newLine);
+	        
+	        ArrayList<ProvidedService> allServices = ChocAnMain.providedServiceDatabase.getEntryList();
+	        for (int i = 0; i < allServices.size(); ++i) {
+	        	//Get all the services provided to the member
+	            ProvidedService s = allServices.get(i);
+	            if (s.getMemberId() == thisMemberId) {
+	                fW.write("Date provided: " + s.getDateProvided() + newLine);
+	                
+	                //Get the provider of the service
+	                Provider provider = ChocAnMain.providerDatabase.getEntry(s.getProviderId());
+	                fW.write("Provider name: " + provider.getName() + newLine);
+	                
+	                //Get the service provided
+	                Service service = ChocAnMain.providerDirectoryDatabase.getEntry(s.getProviderId());
+	                fW.write("Service name: " + service.getName() + newLine + newLine);
+	            }
         }
+	    fW.flush();
         fW.close();
+        }
+        catch (Exception e){
+        	System.out.println(e);
+        }
     }
 }
