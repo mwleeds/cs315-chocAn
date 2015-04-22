@@ -1,12 +1,9 @@
-
-
-
 import java.util.Scanner;
 
 /**
  * Parent class for all the prompt controllers.
  * @author Ryan Mitchell
- * @author breannatucker
+ * @author Breanna Tucker
  *
  */
 public abstract class Prompter {
@@ -19,12 +16,12 @@ public abstract class Prompter {
 	 * @return				the response from the message
 	 */
 	public static String prompt(String promptString) {
-		try{
+		try {
 			System.out.println(promptString);
 			String response = ChocAnMain.input.next();
 			Thread.sleep(5);
-			return response;}
-		catch (Exception e){ }
+			return response;
+        } catch (Exception e){ }
 		return null;
 	}
 	

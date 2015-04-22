@@ -1,7 +1,7 @@
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.io.IOException;
 import database.*;
 
 public class ChocAnMain {
@@ -23,38 +23,54 @@ public class ChocAnMain {
     
     public static void main(String []args) {
 
-        // Choose which user to log in as
+        /* mock data
+        Service s1 = new Service("just eat less chocolate", 42);
+        providerDirectoryDatabase.addEntry(s1);
+        Provider p1 = new Provider("Obamacare", "addr1", "city", "zip", "state");
+        providerDatabase.addEntry(p1);
+        Member m1 = new Member("Jacob Farmer", "Suspended", "123 Maple Street", "Farmington", "12345", "WI");
+        memberDatabase.addEntry(m1);
+        ProvidedService pS = null;
+        try { pS = new ProvidedService(new Date(), m1.getId(), p1.getId(), s1.getId(), "good stuff man"); } 
+        catch (Exception e) {System.out.println(e.getMessage());}
+        providedServiceDatabase.addEntry(pS);
+        end mock data */
+
         Prompter prompt;
-        while (true){
-        System.out.println("\nWelcome to ChocAn!\n");
-        System.out.println("Log in:\n1. Provider\n2. Operator\n3. Manager\n4. Member\nEnter choice: ");
-        int choice = input.nextInt();
-	        switch (choice) {
-	            case 1:
-	                prompt = new ProviderPrompt();
-	                prompt.run();
-	                break;
-	            case 2:
-	                prompt = new OperatorPrompt();
-	                prompt.run();
-	                break;
-	            case 3:
-	                prompt = new ManagerPrompt();
-	                prompt.run();
-	                break;
-	            case 4:
-	                prompt = new MemberPrompt();
-	                prompt.run();
-	                break;
-	            default:
-	                System.out.println("Invalid Selection");
-	                break;
-	        }
+        String choice = "";
+        while (!choice.equals("5")) {
+            System.out.println("\nWelcome to ChocAn!\n");
+            // Choose which user to log in as
+            System.out.println("Log in:\n1. Provider\n2. Operator\n3. Manager\n4. Member\n5. Exit ChocAn\nEnter choice: ");
+            choice = input.next();
+            switch (choice) {
+                case "1":
+                    prompt = new ProviderPrompt();
+                    prompt.run();
+                    break;
+                case "2":
+                    prompt = new OperatorPrompt();
+                    prompt.run();
+                    break;
+                case "3":
+                    prompt = new ManagerPrompt();
+                    prompt.run();
+                    break;
+                case "4":
+                    prompt = new MemberPrompt();
+                    prompt.run();
+                    break;
+                case "5":
+                    break;
+                default:
+                    System.out.println("Invalid option entered. Press enter to continue");
+                    try { System.in.read(); } catch (IOException e) {}
+                    break;
+            }
         }
+    } // end main
 
-    }
-
-        //Example for quereying information
+        //Example for querying information
         //Get all services provided to member #0
         /*
             int memberId = 0;
