@@ -19,9 +19,13 @@ public class MemberReport extends Report {
     
     public void generateReport() throws IOException {
         FileWriter fW = new FileWriter(reportFile);
+        
         try{
+        	System.out.println(reportFile);
+        	
         	//Write the member properties
         	int thisMemberId = member.getId();
+        	
         	fW.write("Member name: " + member.getName() + newLine);
             fW.write("Member number: " + thisMemberId + newLine); 
 	        fW.write("Member address: " + member.getAddressStreet() + newLine);
@@ -34,6 +38,7 @@ public class MemberReport extends Report {
 	        	//Get all the services provided to the member
 	            ProvidedService s = allServices.get(i);
 	            if (s.getMemberId() == thisMemberId) {
+	            	
 	                fW.write("Date provided: " + s.getDateProvided() + newLine);
 	                
 	                //Get the provider of the service
@@ -41,15 +46,14 @@ public class MemberReport extends Report {
 	                fW.write("Provider name: " + provider.getName() + newLine);
 	                
 	                //Get the service provided
-	                Service service = ChocAnMain.providerDirectoryDatabase.getEntry(s.getProviderId());
+	                Service service = ChocAnMain.providerDirectoryDatabase.getEntry(s.getServiceId());
 	                fW.write("Service name: " + service.getName() + newLine + newLine);
 	            }
-        }
-	    fW.flush();
-        fW.close();
+	        }
         }
         catch (Exception e){
-        	System.out.println(e);
-        }
+        	System.out.println(e);}
+    fW.flush();
+    fW.close();
     }
 }

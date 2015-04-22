@@ -122,10 +122,10 @@ public class ProviderPrompt extends Prompter {
                     try { System.in.read(); } catch (IOException j) {}
                     break;
                 case "4":
+                	goForward("");
                     break;
                 default:
                     System.out.println("Invalid selection");
-                    goForward("");
                     break;
             }
             goBack();
