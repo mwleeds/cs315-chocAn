@@ -31,15 +31,14 @@
         </javac>
     </target>
 
-    <!-- Creates Javadoc 
+    <!-- Creates Javadoc -->
     <target name="docs" depends="compile">
-        <javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
-             Define which files / directory should get included, we include all 
+        <javadoc packagenames="src" destdir="${docs.dir}">
             <fileset dir="${src.dir}">
-                <include name="**" />
+                <exclude name="**/ChocAnTest.java/**" />
             </fileset>
         </javadoc>
-    </target>-->
+    </target>
 
     <!--Creates the deployable jar file  -->
     <target name="jar" depends="compile">
@@ -59,7 +58,7 @@
         </junit>
     </target>
 
-    <target name="main" depends="compile, jar">
+    <target name="main" depends="compile, jar, docs">
         <description>Main target</description>
     </target>
 

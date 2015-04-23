@@ -14,7 +14,7 @@ public class ManagerPrompt extends Prompter {
 		File reportFile = new File(filename);
 		if (reportFile.exists()) {
 			String response = prompt("File exists. Overwrite? [Y/n]");
-			if (response.substring(0,0).toUpperCase().equals("N"))
+			if (response.substring(0,1).toUpperCase().equals("N"))
 				return;
             else
                 reportFile.delete();
@@ -33,7 +33,7 @@ public class ManagerPrompt extends Prompter {
 		File eftFile = new File(filename);
 		if (eftFile.exists()) {
 			String response = prompt("File exists. Overwrite? [Y/n]");
-			if (response.substring(0,0).toUpperCase().equals("N"))
+			if (response.substring(0,1).toUpperCase().equals("N"))
 				return;
             else
                 eftFile.delete();
