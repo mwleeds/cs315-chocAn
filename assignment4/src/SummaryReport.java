@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.text.DecimalFormat;
+
 import database.*;
 
 /**
@@ -73,7 +74,7 @@ public class SummaryReport extends Report {
             try { thisProviderId = thisProvider.getId(); }
             catch (Exception e) { thisProviderId = -1; }
             fW.write("Provider name: " + thisProvider.getName() + newLine);
-            fW.write("Provider " + i + " number: " + thisProviderId + newLine);
+            fW.write("Provider number: " + String.format("%09d",thisProviderId) + newLine);
             fW.write("Number of consultations: " + this.numConsultations.get(thisProviderId) + newLine);
             fW.write("Total fee: " + df.format(this.totalFees.get(thisProviderId)) + newLine);
         }

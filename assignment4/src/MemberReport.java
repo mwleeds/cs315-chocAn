@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+
 import database.*;
 
 /**
@@ -27,7 +28,7 @@ public class MemberReport extends Report {
         	int thisMemberId = member.getId();
         	
         	fW.write("Member name: " + member.getName() + newLine);
-            fW.write("Member number: " + thisMemberId + newLine); 
+            fW.write("Member number: " + String.format("%09d",thisMemberId) + newLine); 
 	        fW.write("Member address: " + member.getAddressStreet() + newLine);
 	        fW.write("Member city: " + member.getAddressCity() + newLine);
 	        fW.write("Member state: " + member.getAddressState() + newLine);

@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+
 import database.*;
 
 /**
@@ -25,7 +26,7 @@ public class ProviderReport extends Report {
         try {
         	providerId = provider.getId();
         	fW.write("Provider name: " + provider.getName() + newLine);
-            fW.write("Provider number: " + providerId + newLine); 
+            fW.write("Provider number: " + String.format("%09d",providerId) + newLine); 
 	        fW.write("Provider address: " + provider.getAddressStreet() + newLine);
 	        fW.write("Provider city: " + provider.getAddressCity() + newLine);
 	        fW.write("Provider state: " + provider.getAddressState() + newLine);
@@ -48,11 +49,11 @@ public class ProviderReport extends Report {
 	                //Get the member the service was provided to
 	                Member m = ChocAnMain.memberDatabase.getEntry(s.getMemberId());
 	                fW.write("Member name: " + m.getName() + newLine);
-	                fW.write("Member number: " + m.getId() + newLine);
+	                fW.write("Member number: " + String.format("%09d",m.getId()) + newLine);
 	                
 	                //Get the service that was provided
 	                Service service = ChocAnMain.providerDirectoryDatabase.getEntry(s.getServiceId());
-	                fW.write("Service code: " + service.getId() + newLine);
+	                fW.write("Service code: " + String.format("%09d",service.getId()) + newLine);
 	                fW.write("Service fee: " + service.getFee() + newLine + newLine);
 	                
 	                numServicesProvided++;

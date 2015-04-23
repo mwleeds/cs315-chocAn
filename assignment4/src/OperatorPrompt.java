@@ -80,8 +80,8 @@ public class OperatorPrompt extends Prompter{
 					String status = prompt("Status:");
 					String street = prompt("Address Street:", 25);
 					String city = prompt("Address City:", 14);
-					String zip = prompt("Address Zip Code:", 5);
-					String state = prompt("Address State:", 2);
+					String zip = prompt("Address Zip Code:", 5, 5);
+					String state = prompt("Address State:", 2, 2);
 					
 					//Add the member to the database
 					Member newMember = new Member(name,status,street,city,zip,state);
@@ -92,8 +92,8 @@ public class OperatorPrompt extends Prompter{
 					String name = prompt("Name:", 25);
 					String street = prompt("Address Street:", 25);
 					String city = prompt("Address City:", 14);
-					String zip = prompt("Address Zip Code:", 5);
-					String state = prompt("Address State:", 2);
+					String zip = prompt("Address Zip Code:", 5, 5);
+					String state = prompt("Address State:", 2, 2);
 					
 					//Add the provider to the database
 					Provider newProvider = new Provider(name,street,city,zip,state);
@@ -117,14 +117,14 @@ public class OperatorPrompt extends Prompter{
 					id = ChocAnMain.providerDirectoryDatabase.addEntry(newService);}
 				
 				//Output that the entry has been created
-				System.out.println("The new entry has been created. It's id is "+id);
+				System.out.println("The new entry has been created. It's id is "+String.format("%09d",id));
                 System.out.println("Press enter to continue");
                 try { System.in.read(); } catch (IOException e) {}
 				break;
 			case "2":
 				goForward("Get "+type);
 				
-				int idGet = Integer.parseInt(prompt(type+" ID:"));
+				int idGet = Integer.parseInt(prompt(type+" ID:",9,9));
 				
 				//Print out the member's properties
 				if (entry == EntryType.MEMBER){	
@@ -175,7 +175,7 @@ public class OperatorPrompt extends Prompter{
 				goForward("Update "+type);
 				
 				//Get the member with the specified ID
-				int id2 = Integer.parseInt(prompt(type+" ID:"));
+				int id2 = Integer.parseInt(prompt(type+" ID:",9,9));
 				if (entry == EntryType.MEMBER){
 					Member updateMember = ChocAnMain.memberDatabase.getEntry(id2);
 					if (updateMember == null){
@@ -208,11 +208,11 @@ public class OperatorPrompt extends Prompter{
 							System.out.println("City updated");
 							break;
 						case "5":
-							updateMember.setAddressZipCode(prompt("New zip code:", 5));
+							updateMember.setAddressZipCode(prompt("New zip code:", 5, 5));
 							System.out.println("Zip code updated");
 							break;
 						case "6":
-							updateMember.setAddressState(prompt("New state:", 2));
+							updateMember.setAddressState(prompt("New state:", 2, 2));
 							System.out.println("State updated");
 							break;
 						case "7":
@@ -250,11 +250,11 @@ public class OperatorPrompt extends Prompter{
 							System.out.println("City updated");
 							break;
 						case "4":
-							updateProvider.setAddressZipCode(prompt("New zip code:", 5));
+							updateProvider.setAddressZipCode(prompt("New zip code:", 5, 5));
 							System.out.println("Zip code updated");
 							break;
 						case "5":
-							updateProvider.setAddressState(prompt("New state:", 2));
+							updateProvider.setAddressState(prompt("New state:", 2, 2));
 							System.out.println("State updated");
 							break;
 						case "6":
@@ -307,7 +307,7 @@ public class OperatorPrompt extends Prompter{
 				goForward("Remove "+type);
 				
 				//Get the member with the specified ID
-				int memberid = Integer.parseInt(prompt(type+" ID:"));
+				int memberid = Integer.parseInt(prompt(type+" ID:",9,9));
 				Database.DatabaseEntry removeEntry = null;
 				if (entry == EntryType.MEMBER){
 					removeEntry = ChocAnMain.memberDatabase.getEntry(memberid);}
