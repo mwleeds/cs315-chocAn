@@ -83,15 +83,11 @@ public class ProviderPrompt extends Prompter {
                     }
                     System.out.println("Provided service: " + thisService.getName());
                     String confirm = prompt("Is this correct? [Y/n]");
-                    if (confirm.substring(0,0).toUpperCase().equals("N")) break;
+                    if (confirm.substring(0,1).toUpperCase().equals("N")) break;
                     String comments = "";
                     comments = prompt("Comments (optional): ");
                     ProvidedService pS = new ProvidedService(dateProvided, Integer.parseInt(memberId), Integer.parseInt(id), serviceId, comments);
                     ChocAnMain.providedServiceDatabase.addEntry(pS);
-
-                    System.out.println("Record successfully written to the database");
-                   
-
                     System.out.println("Record successfully written to the database. Press enter to continue");
                     try { System.in.read(); } catch (IOException h) {}
                     break;
@@ -101,7 +97,7 @@ public class ProviderPrompt extends Prompter {
                     File reportFile = new File(filename);
                     if (reportFile.exists()) {
                         String response = prompt("File exists. Overwrite? [Y/n]");
-                        if (response.substring(0,0).toUpperCase().equals("N"))
+                        if (response.substring(0,1).toUpperCase().equals("N"))
                             break;
                         else 
                             reportFile.delete();
@@ -118,7 +114,7 @@ public class ProviderPrompt extends Prompter {
                         break;
                     }
 
-                    System.out.println("Record successfully written to the database. Press enter to continue");
+                    System.out.println("Report successfully written to the disk. Press enter to continue");
                     try { System.in.read(); } catch (IOException j) {}
                     break;
                 case "4":

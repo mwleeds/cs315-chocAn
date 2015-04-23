@@ -67,8 +67,8 @@ public class OperatorPrompt extends Prompter{
 		//Choose what operation to perform
 		String choice = " ";
 		while (!choice.equals("")){
-			choice = prompt(String.format("Choose an action\n1. Add a new "+typeLower+"\n2. Get an "+typeLower+"'s information\n"
-					+"3. Update an "+typeLower+"'s information\n4. Remove an "+typeLower+"\n5. To go back"));
+			choice = prompt(String.format("Choose an action\n1. Add a new "+typeLower+"\n2. Get a "+typeLower+"'s information\n"
+					+"3. Update a "+typeLower+"'s information\n4. Remove a "+typeLower+"\n5. To go back"));
 			switch (choice){
 			case "1":
 				goForward("New "+type);
@@ -323,26 +323,17 @@ public class OperatorPrompt extends Prompter{
 				}
 				
 				//Delete member if the user confirms
-				String confirm = "";
-				while (confirm.equals("")){
-					confirm = prompt("Are you sure?\n1. Yes\n2. No");
-					switch (confirm) {
-						case "1":
-							if (entry == EntryType.MEMBER){
-								ChocAnMain.memberDatabase.removeEntry(removeEntry);}
-							else if (entry == EntryType.PROVIDER){
-								ChocAnMain.providerDatabase.removeEntry(removeEntry);}
-							else if (entry == EntryType.SERVICE){
-								ChocAnMain.providerDirectoryDatabase.removeEntry(removeEntry);}
-							System.out.println("The "+typeLower+" was deleted");
-							break;
-						case "2":
-							System.out.println("The "+typeLower+" was not deleted");
-							break;
-						default:
-							System.out.println("Invalid selection");
-							confirm = "";
-							break;}				
+                String confirm = prompt("Are you sure? [Y/n]");
+                if (confirm.substring(0,1).toUpperCase().equals("Y")) {
+                    if (entry == EntryType.MEMBER){
+                        ChocAnMain.memberDatabase.removeEntry(removeEntry);}
+                    else if (entry == EntryType.PROVIDER){
+                        ChocAnMain.providerDatabase.removeEntry(removeEntry);}
+                    else if (entry == EntryType.SERVICE){
+                        ChocAnMain.providerDirectoryDatabase.removeEntry(removeEntry);}
+                    System.out.println("The "+typeLower+" was deleted");
+                } else {
+                    System.out.println("The "+typeLower+" was not deleted");
 				}
                 System.out.println("Press enter to continue");
                 try { System.in.read(); } catch (IOException e) {}

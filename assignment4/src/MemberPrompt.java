@@ -29,7 +29,7 @@ public class MemberPrompt extends Prompter {
 		File reportFile = new File(filename);
 		if (reportFile.exists()) {
 			String response = prompt("File exists. Overwrite? [Y/n]");
-			if (response.substring(0,0).toUpperCase().equals("N"))
+			if (response.substring(0,1).toUpperCase().equals("N"))
 				return;
             else 
                 reportFile.delete();
@@ -45,7 +45,7 @@ public class MemberPrompt extends Prompter {
             try { System.in.read(); } catch (IOException g) {}
             return;
         }
-        System.out.println("Record successfully written to the database. Press enter to continue");
+        System.out.println("Report successfully written to the disk. Press enter to continue");
         try { System.in.read(); } catch (IOException h) {}
         return;
 	}

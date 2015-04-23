@@ -36,27 +36,22 @@ public class ChocAnTest {
     double fee = 99.99;
     s.setFee(fee);
     
-    assertEquals(99.99,fee, s.getFee());
+    assertEquals(99.99, s.getFee(), 0.0001);
   }
     
   @Test
-  public void testDatabase() {
+  public void testDatabase() throws Exception {
     Member mem1 = new Member ("Josh Turner", "OK", "625 Adams Street", "Orlando", "34443", "CA");
     int memberId = memberDatabase.addEntry(mem1);
     
     memberDatabase = new Database<Member>(memberDatabaseFile);
     
     Member mem2 = memberDatabase.getEntry(0);
-    try{
-      assertEquals(0, mem2.getId());
-    }
-    catch (Exception e){
-      System.out.println(e);
-    }
+    assertEquals(0, mem2.getId());
   }
   
   @Test
-  public void testUpdate() {
+  public void testUpdate() throws Exception {
 	Member mem1 = new Member ("Turner Bob", "OK", "343 fulton street", "Tacoma", "34657", "MI");
 	int memberId = memberDatabase.addEntry(mem1);
 	memberDatabase = new Database<Member>(memberDatabaseFile);
@@ -65,11 +60,6 @@ public class ChocAnTest {
     memberDatabase.updateEntry(mem3);
     
     Member mem4 = memberDatabase.getEntry(0);
-    try{
-      assertEquals(0, mem4.getId());
-    }
-    catch (Exception e) {
-      System.out.println(e);
-    }
+    assertEquals(0, mem4.getId());
   }
 }
